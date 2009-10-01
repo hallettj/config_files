@@ -10,7 +10,7 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haskell,eruby,html,haml,yaml,lua,io set ai sw=2 sts=2 et
-  autocmd FileType javascript set ai sw=2 sts=2 et
+  autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
 
 augroup mkd
