@@ -1,0 +1,36 @@
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[user]
+    name = Jesse Hallett
+    email = hallettj@gmail.com
+[alias]
+    st  = status
+    up  = !git stash && git fetch && git rebase origin/master && git stash pop
+    di  = diff --cached
+    fix = !vim $(git-ls-files --unmerged | cut -f2 | uniq)
+    pend = log origin/master..HEAD
+[url "git@github.com"]
+    insteadOf = gh
+[core]
+    pager = less -FR
+    excludesfiles = .*.swo .*.swp
+[format]
+    #pretty = tformat:"%Cblue%h...%Creset %Cgreen%an:%Creset %s (%ar)"
+[push]
+    default = matching
