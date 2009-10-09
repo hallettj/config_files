@@ -76,7 +76,7 @@ export VISUAL=$EDITOR
 #   -F quit immediately and just output data if less than one screen
 # This means I can pass colordiff output, etc. to less and get proper coloring, and it works 'right'
 # if there's no need to paginate. So I can use the same command for a little tweak or a big set of changes.
-export LESS="-i -n -R -F"
+#export LESS="-i -n -R -F"
  
 # I keep my projects under ~/projects; this allows me to type `cdp foo' and end up in ~/projects/foobar.
 function cdp {
