@@ -17,6 +17,12 @@ augroup mkd
   autocmd FileType mkd set ai sw=2 sts=2 et formatoptions=tcroqn2 comments=n:>
 augroup END
 
+" Store temp files in a central location
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+set visualbell
+
 " Remove menu bar
 set guioptions-=m
 
