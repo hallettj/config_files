@@ -21,8 +21,6 @@ augroup END
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-set visualbell
-
 " Remove menu bar
 set guioptions-=m
 
