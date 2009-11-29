@@ -77,6 +77,10 @@ export VISUAL=$EDITOR
 # This means I can pass colordiff output, etc. to less and get proper coloring, and it works 'right'
 # if there's no need to paginate. So I can use the same command for a little tweak or a big set of changes.
 #export LESS="-i -n -R -F"
+
+# Ruby settings: this option automatically loads rubygems so that I don't need
+# any explicit require lines.
+export RUBYOPT='rubygems'
  
 # I keep my projects under ~/projects; this allows me to type `cdp foo' and end up in ~/projects/foobar.
 function cdp {
