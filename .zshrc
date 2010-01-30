@@ -52,7 +52,7 @@ function prompt {
         echo " ${ref#refs/heads/}"
     }
 
-    export PROMPT="${PR_GREEN}%n@%m ${PR_BLUE}%~${PR_CYAN}\$(git_branch) ${PR_BLUE}%(?.:).:() ${PR_NO_COLOR}"
+    export PROMPT="${PR_GREEN}%n@%m ${PR_BLUE}%2~${PR_CYAN}\$(git_branch) ${PR_BLUE}%(?.:).:() ${PR_NO_COLOR}"
 }
 prompt
  
