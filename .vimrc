@@ -9,8 +9,13 @@ augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
   " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,python,haskell,eruby,html,haml,yaml,lua,io,java set ai sw=2 sts=2 et
-  autocmd FileType javascript set ai sw=4 sts=4 et
+  autocmd FileType ruby,python,haskell,eruby,html,haml,yaml,lua,io,scala set ai sw=2 sts=2 et
+  autocmd FileType javascript,java set ai sw=4 sts=4 et
+
+  au BufRead,BufNewFile *.ftl setfiletype ftl
+  autocmd FileType ftl set syntax=html ai sw=4 sts=4 et
+  au BufRead,BufNewFile *.soy setfiletype soy
+  autocmd FileType soy set syntax=html ai sw=4 sts=4 et
 augroup END
 
 augroup mkd
@@ -28,4 +33,5 @@ set guioptions-=m
 set guioptions-=T
 
 " Bind JSLint to <F5> key.
+map <F4> :JSLintLight<CR>
 map <F5> :JSLint<CR>
