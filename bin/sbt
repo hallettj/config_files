@@ -1,15 +1,24 @@
 #!/bin/sh
 
-VER=0.7.1
-SBT=$HOME/.sbt/sbt-launcher-${VER}.jar
+if [ ! $SBT_VERSION ]; then SBT_VERSION=0.7.1; fi
+if [ ! $SBT_DIR ]; then SBT_DIR=$HOME/.sbt; fi
+if [ ! $SBT_FILENAME ]; then SBT_FILENAME=sbt-launch-$SBT_VERSION.jar; fi
+if [ ! $SBT_LOCATION ]; then SBT_LOCATION=$SBT_DIR/$SBT_FILENAME; fi
 
-URL="http://simple-build-tool.googlecode.com/files/sbt-launch-${VER}.jar"
+SBT_URL="http://simple-build-tool.googlecode.com/files/$SBT_FILENAME"
 
-if [ ! -f $SBT ]; 
+if [ ! -f $SBT_LOCATION ];
 then
-	echo "Could not find ${SBT}, downloading..."
-	mkdir -p $HOME/.sbt
-	wget --progress=bar "${URL}" -O ${SBT}
+	echo "Could not find $SBT_FILENAME in $SBT_DIR, downloading..."
+	mkdir -p $SBT_DIR
+	if which wget > /dev/null; then
+		wget --progress=bar "$SBT_URL" -O $SBT_LOCATION
+	elif which curl > /dev/null; then
+		(cd $SBT_DIR; curl "$SBT_URL" -o $SBT_LOCATION)
+	else
+		echo "Could not find wget or curl."
+		exit 1
+	fi
 fi
 
-java -Xmx512M -jar ${SBT} "$@"
+java -jar $SBT_LOCATION "$@"
