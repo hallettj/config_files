@@ -99,6 +99,9 @@ function revivify {
 
 # Tells zsh where to look for completion scripts.
 fpath=(~/.zsh/Completion $fpath)
+
+# Source ~/.zsh/local for configuration specific to this machine.
+[[ -s "$HOME/.zsh/local" ]] && source "$HOME/.zsh/local"
  
 ## STOP CARING
  
