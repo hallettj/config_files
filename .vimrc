@@ -1,4 +1,11 @@
 set nocompatible          " We're running Vim, not Vi!
+
+" Needed on some linux distros.
+" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+filetype off
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
 syntax on                 " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
@@ -16,6 +23,8 @@ augroup myfiletypes
   autocmd FileType ftl set syntax=html ai sw=4 sts=4 et
   au BufRead,BufNewFile *.soy setfiletype soy
   autocmd FileType soy set syntax=html ai sw=4 sts=4 et
+  au BufRead,BufNewFile *.md setfiletype markdown
+  autocmd FileType markdown set ai sw=4 sts=4 et
 augroup END
 
 augroup mkd
@@ -35,3 +44,5 @@ set guioptions-=T
 " Bind JSLint to <F5> key.
 map <F4> :JSLintLight<CR>
 map <F5> :JSLint<CR>
+
+colorscheme desert
