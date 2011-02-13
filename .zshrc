@@ -93,6 +93,12 @@ function revivify {
     rsync -rP mboeh@oldorz:projects/$proj/ ~/projects/$proj/
   done
 }
+
+# Run multiple Ruby versions with RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+# Tells zsh where to look for completion scripts.
+fpath=(~/.zsh/Completion $fpath)
  
 ## STOP CARING
  
