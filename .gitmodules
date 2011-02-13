@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/jslint.vim"]
 	path = .vim/bundle/jslint.vim
 	url = git://github.com/hallettj/jslint.vim.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
