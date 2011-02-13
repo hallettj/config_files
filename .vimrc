@@ -9,6 +9,9 @@ call pathogen#runtime_append_all_bundles()
 syntax on                 " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
+" Map <Leader> to , key
+let mapleader = ","
+
 " Load matchit (% to bounce from do to end, etc.)
 runtime! macros/matchit.vim
 
