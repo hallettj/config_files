@@ -12,8 +12,49 @@ filetype plugin indent on " Enable filetype-specific indenting and plugins
 " Map <Leader> to , key
 let mapleader = ","
 
-" Load matchit (% to bounce from do to end, etc.)
-runtime! macros/matchit.vim
+" Default tab options
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set encoding=utf-8
+set scrolloff=3
+set autoindent
+set showmode
+set hidden
+set wildmode=longest
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+
+" Use standard regular expressions when searching.
+nnoremap / /\v
+vnoremap / /\v
+
+" Make searches case-sensitive only when capital letters are included.
+set ignorecase
+set smartcase
+
+" Make searching more interactive.
+set incsearch
+
+" Bounce between bracket pairs with the <tab> key.
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Wrap long lines
+set wrap
+set textwidth=79
+set formatoptions=tcqrn1
+
+" Displays visible characters for tab and end-of-line characters.
+set list
+set listchars=tab:▸\ ,eol:¬
+
+" Automatically save when the window loses focus.
+au FocusLost * :wa
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -31,7 +72,7 @@ augroup myfiletypes
 augroup END
 
 augroup mkd
-  autocmd FileType mkd set ai sw=2 sts=2 et formatoptions=tcroqn2 comments=n:>
+  autocmd FileType mkd set ai sw=2 sts=2 et comments=n:>
 augroup END
 
 " Store temp files in a central location
@@ -49,3 +90,8 @@ map <F4> :JSLintLight<CR>
 map <F5> :JSLint<CR>
 
 colorscheme desert
+
+" Set color for end-of-line characters for desert theme.
+highlight NonText guibg=grey20 guifg=grey30
+" Set color for tab characters for desert theme.
+highlight SpecialKey guibg=grey20 guifg=grey30
