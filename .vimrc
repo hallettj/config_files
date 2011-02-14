@@ -46,7 +46,7 @@ vnoremap <tab> %
 
 " Wrap long lines
 set wrap
-set textwidth=79
+set textwidth=72
 set formatoptions=tcqrn1
 
 " Displays visible characters for tab and end-of-line characters.
