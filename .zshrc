@@ -63,6 +63,8 @@ alias capdiff="cap deploy:pending:diff | ruby -e 'readline; print \$stdin.read' 
 # twyt is a twitter commandline client. These are shorthand for viewing updates or making a tweet.
 alias twit="twyt friendstl"
 alias twoot="twyt tweet"
+alias ack="ack-grep"
+
 # I have so many things in ~/bin 
 export PATH=$PATH:/home/jesse/bin:/opt/ruby/bin:/var/lib/gems/1.8/bin
 # That's right
