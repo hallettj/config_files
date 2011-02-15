@@ -29,20 +29,12 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
-" Use standard regular expressions when searching.
-nnoremap / /\v
-vnoremap / /\v
-
 " Make searches case-sensitive only when capital letters are included.
 set ignorecase
 set smartcase
 
 " Make searching more interactive.
 set incsearch
-
-" Bounce between bracket pairs with the <tab> key.
-nnoremap <tab> %
-vnoremap <tab> %
 
 " Wrap long lines
 set wrap
@@ -53,41 +45,12 @@ set formatoptions=tcqrn1
 set list
 set listchars=tab:▸\ ,eol:¬
 
-" Automatically save when the window loses focus.
-au FocusLost * :wa
-
-augroup myfiletypes
-  " Clear old autocmds in group
-  autocmd!
-  " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,python,haskell,eruby,haml,yaml,lua,io,scala set ai sw=2 sts=2 et
-  autocmd FileType html,javascript,java,xml,dot set ai sw=4 sts=4 et
-
-  au BufRead,BufNewFile *.ftl setfiletype ftl
-  autocmd FileType ftl set syntax=html ai sw=4 sts=4 et
-  au BufRead,BufNewFile *.soy setfiletype soy
-  autocmd FileType soy set syntax=html ai sw=4 sts=4 et
-  au BufRead,BufNewFile *.md setfiletype markdown
-  autocmd FileType markdown set ai sw=4 sts=4 et
-augroup END
-
-augroup mkd
-  autocmd FileType mkd set ai sw=2 sts=2 et comments=n:>
-augroup END
-
 " Store temp files in a central location
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" Remove menu bar
-set guioptions-=m
-
-" Remove toolbar
-set guioptions-=T
-
-" Bind JSLint to <F5> key.
-map <F4> :JSLintLight<CR>
-map <F5> :JSLint<CR>
+" Remove menu bar and toolbar.
+set guioptions-=m guioptions-=T
 
 colorscheme desert
 
@@ -95,3 +58,60 @@ colorscheme desert
 highlight NonText guibg=grey20 guifg=grey30
 " Set color for tab characters for desert theme.
 highlight SpecialKey guibg=grey20 guifg=grey30
+
+" Automatically save when the window loses focus or when a buffer is
+" hidden.
+au FocusLost * silent wa
+au BufHidden * silent w
+
+augroup myfiletypes
+  " Clear old autocmds in group
+  autocmd!
+
+  " When working with certain programming languages I want to indent
+  " with 2 spaces instead of 4.
+  autocmd FileType ruby,python,haskell,eruby,haml,yaml,lua,io,scala set sw=2 sts=2
+
+  au BufRead,BufNewFile *.ftl setfiletype ftl
+  autocmd FileType ftl set syntax=html
+  au BufRead,BufNewFile *.soy setfiletype soy
+  autocmd FileType soy set syntax=html
+  au BufRead,BufNewFile *.md setfiletype markdown
+  autocmd FileType markdown set comments=n:>
+  autocmd FileType mkd set comments=n:>
+augroup END
+
+" statusline
+" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" format markers:
+"   %< truncation point
+"   %n buffer number
+"   %f relative path to file
+"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
+"   %r readonly flag [RO]
+"   %y filetype [ruby]
+"   %= split point for left and right justification
+"   %-35. width specification
+"   %l current line number
+"   %L number of lines in buffer
+"   %c current column number
+"   %V current virtual column number (-n), if different from %c
+"   %P percentage through buffer
+"   %) end of width specification
+set statusline=%<\ %n:%f\ %m%r%y%=%{fugitive#statusline()}\ %-35.(line:\ %l\ of\ %L,\ col:\ %c\ (%P)%)
+
+" Use standard regular expressions when searching.
+nnoremap / /\v
+vnoremap / /\v
+
+" Load matchit to bounce between do and end in Ruby and between opening
+" and closing tags in HTML.
+runtime! macros/matchit.vim
+
+" Bounce between bracket pairs with the <tab> key.
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Shortcuts for Fugitive commands.
+nnoremap <Leader>gs :Gstatus<cr>
+vnoremap <Leader>gs :Gstatus<cr>
