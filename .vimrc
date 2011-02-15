@@ -72,6 +72,9 @@ augroup myfiletypes
   " with 2 spaces instead of 4.
   autocmd FileType ruby,python,haskell,eruby,haml,yaml,lua,io,scala set sw=2 sts=2
 
+  " Use hard tabs with these file types.
+  autocmd FileType snippet,gitconfig set noexpandtab
+
   au BufRead,BufNewFile *.ftl setfiletype ftl
   autocmd FileType ftl set syntax=html
   au BufRead,BufNewFile *.soy setfiletype soy
