@@ -49,6 +49,12 @@ set listchars=tab:▸\ ,eol:¬
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" NERD Commenter preferences
+let NERDSpaceDelims = 1
+let NERDCustomDelimiters = {
+    \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
+\ }
+
 " Remove menu bar and toolbar.
 set guioptions-=m guioptions-=T
 
@@ -77,6 +83,8 @@ augroup myfiletypes
 
   au BufRead,BufNewFile *.ftl setfiletype ftl
   autocmd FileType ftl set syntax=html
+  let NERD_ftl_alt_style=1
+
   au BufRead,BufNewFile *.soy setfiletype soy
   autocmd FileType soy set syntax=html
   au BufRead,BufNewFile *.md setfiletype markdown
