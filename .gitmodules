@@ -25,3 +25,9 @@
 [submodule ".vim/bundle/sparkup"]
 	path = .vim/bundle/sparkup
 	url = https://github.com/bingaman/vim-sparkup.git
+[submodule ".vim/bundle/surround"]
+	path = .vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/repeat"]
+	path = .vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
