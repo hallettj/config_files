@@ -51,6 +51,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " NERD Commenter preferences
 let NERDSpaceDelims = 1
+let NERD_ftl_alt_style=1
 let NERDCustomDelimiters = {
     \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
 \ }
@@ -81,12 +82,9 @@ augroup myfiletypes
   " Use hard tabs with these file types.
   autocmd FileType snippet,gitconfig set noexpandtab
 
-  au BufRead,BufNewFile *.ftl setfiletype ftl
-  autocmd FileType ftl set syntax=html
-  let NERD_ftl_alt_style=1
+  au BufRead,BufNewFile *.ftl setfiletype ftl.html
+  au BufRead,BufNewFile *.soy setfiletype soy.html
 
-  au BufRead,BufNewFile *.soy setfiletype soy
-  autocmd FileType soy set syntax=html
   au BufRead,BufNewFile *.md setfiletype markdown
   autocmd FileType markdown set comments=n:>
   autocmd FileType mkd set comments=n:>
