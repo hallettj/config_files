@@ -39,7 +39,7 @@ set incsearch
 " Wrap long lines
 set wrap
 set textwidth=72
-set formatoptions=tcqrn1
+set formatoptions=cqrn1
 
 " Displays visible characters for tab and end-of-line characters.
 set list
@@ -56,8 +56,9 @@ let NERDCustomDelimiters = {
     \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
 \ }
 
-" Remove menu bar and toolbar.
-set guioptions-=m guioptions-=T
+" Remove menu bar, toolbar, and scrollbars
+set guioptions+=mTLlRrb
+set guioptions-=mTLlRrb
 
 colorscheme desert
 
