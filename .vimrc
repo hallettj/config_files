@@ -110,10 +110,6 @@ augroup END
 "   %) end of width specification
 set statusline=%<\ %n:%f\ %m%r%y%=%{fugitive#statusline()}\ %-35.(line:\ %l\ of\ %L,\ col:\ %c\ (%P)%)
 
-" Use standard regular expressions when searching.
-nnoremap / /\v
-vnoremap / /\v
-
 " Load matchit to bounce between do and end in Ruby and between opening
 " and closing tags in HTML.
 runtime! macros/matchit.vim
