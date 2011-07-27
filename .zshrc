@@ -100,7 +100,7 @@ function revivify {
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Tells zsh where to look for completion scripts.
-fpath=(~/.zsh/Completion $fpath)
+fpath=(~/.zsh/functions/Completion $fpath)
 
 # Source ~/.zsh/local for configuration specific to this machine.
 [[ -s "$HOME/.zsh/local" ]] && source "$HOME/.zsh/local"
