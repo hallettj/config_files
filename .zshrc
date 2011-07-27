@@ -66,7 +66,7 @@ alias twoot="twyt tweet"
 alias ack="ack-grep"
 
 # I have so many things in ~/bin 
-export PATH=$PATH:/home/jesse/bin:/opt/ruby/bin:/var/lib/gems/1.8/bin
+export PATH=$PATH:/home/jesse/bin
 # That's right
 export EDITOR=vim
 # And again
@@ -95,6 +95,9 @@ function revivify {
     rsync -rP mboeh@oldorz:projects/$proj/ ~/projects/$proj/
   done
 }
+
+# Look for nodejs in ~/local/node
+export PATH=$HOME/local/node/bin:$PATH
 
 # Run multiple Ruby versions with RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
