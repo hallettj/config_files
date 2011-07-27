@@ -56,6 +56,10 @@ let NERDCustomDelimiters = {
     \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
 \ }
 
+" Customizations for Command-T
+let g:CommandTMaxFiles = 30000
+set wildignore+=target/java/**,*.class,*.jar
+
 " Remove menu bar, toolbar, and scrollbars
 set guioptions+=mTLlRrb
 set guioptions-=mTLlRrb
@@ -69,8 +73,8 @@ highlight SpecialKey guibg=grey20 guifg=grey30
 
 " Automatically save when the window loses focus or when a buffer is
 " hidden.
-au FocusLost * silent wa
-au BufHidden * silent w
+set autowriteall
+au FocusLost * wall
 
 augroup myfiletypes
   " Clear old autocmds in group
