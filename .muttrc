@@ -1,0 +1,42 @@
+set imap_user="jesse.hallett"
+bind index "G" imap-fetch-mail
+
+set spoolfile={mail.jiveland.com}
+set folder={mail.jiveland.com}
+# set spoolfile="imaps://jesse.hallett@mail.jiveland.com/"
+# # Define the = shortcut, and the entry point for the folder browser (c?)
+# set folder="imaps://jesse.hallett@mail.jiveland.com/"
+set record="=Sent"
+set postponed="=Drafts"
+
+set smtp_url = "smtp://jesse.hallett@mail.jiveland.com:587/"
+set from = "jesse.hallett@jivesoftware.com"
+set realname = "Jesse Hallett"
+
+# Saves a copy of outgoing mail to INBOX for conversation threading.
+fcc-hook ~A =INBOX
+set copy=yes
+
+# Point mutt to the Exchange LDAP database. Press tab to complete LDAP
+# addresses.
+set query_command="$HOME/bin/ldap.pl '%s'"
+bind editor \t complete-query
+
+set noconfirmappend  # Don't ask to append when saving to existing folders.
+set delete=yes  # do not ask when purging deleted messages
+set forward_quote  # quote email body when forwarding
+set include  # quote email body when replying
+set indent_str="> "
+
+set timeout=60
+set mail_check=60  # Decrease interval of scans for new mail, measured in seconds.
+
+# Use links to render HTML content in the pager.
+auto_view text/html
+
+# # Send hooks to set outgoing email addresses
+# send-hook "~C ." my_hdr From: Jesse Hallett <jesse.hallett@jivesoftware.com>
+
+# Cache message headers and bodies.
+set header_cache=$HOME/.mutt/cache
+set message_cachedir=$HOME/.mutt/cache
