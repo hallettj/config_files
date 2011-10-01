@@ -69,7 +69,7 @@ alias twoot="twyt tweet"
 alias ack="ack-grep"
 
 # I have so many things in ~/bin 
-export PATH=$PATH:/home/jesse/bin
+export PATH=$HOME/local/node/bin:/home/jesse/bin:$PATH
 # That's right
 export EDITOR=vim
 # And again
@@ -86,9 +86,6 @@ export VISUAL=$EDITOR
 # Ruby settings: this option automatically loads rubygems so that I don't need
 # any explicit require lines.
 export RUBYOPT='rubygems'
-
-# Look for nodejs in ~/local/node
-export PATH=$HOME/local/node/bin:$PATH
 
 # Run multiple Ruby versions with RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
