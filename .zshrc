@@ -11,6 +11,9 @@ SAVEHIST=2500
 setopt appendhistory
 # Type the name of a directory to cd into it. The laziest option ever.
 setopt autocd
+# Lets me cd into any directory immediately under the given paths
+# without typing the full path.
+cdpath=($HOME $HOME/projects $HOME/projects/*)
 # Expansions also work if zsh is prompting you, not just on the command line.
 setopt prompt_subst
 # Turn off irritating/unsightly beeps when expansion fails.
@@ -83,18 +86,6 @@ export VISUAL=$EDITOR
 # Ruby settings: this option automatically loads rubygems so that I don't need
 # any explicit require lines.
 export RUBYOPT='rubygems'
- 
-# I keep my projects under ~/projects; this allows me to type `cdp foo' and end up in ~/projects/foobar.
-function cdp {
-  cd $(find ~/projects -maxdepth 2 -type d -iname "$1*" -and -not -iname '*.*' | head -n 1)
-}
- 
-# Transferred machines recently. I'm moving over projects if and when I need to work on them.
-function revivify {
-  for proj in $@; do
-    rsync -rP mboeh@oldorz:projects/$proj/ ~/projects/$proj/
-  done
-}
 
 # Look for nodejs in ~/local/node
 export PATH=$HOME/local/node/bin:$PATH
