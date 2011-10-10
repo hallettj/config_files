@@ -83,6 +83,9 @@ export VISUAL=$EDITOR
 # if there's no need to paginate. So I can use the same command for a little tweak or a big set of changes.
 #export LESS="-i -n -R -F"
 
+# Configuration for SBT, the Scala Simple Build Tool
+export SBT_OPTS="-Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"
+
 # Ruby settings: this option automatically loads rubygems so that I don't need
 # any explicit require lines.
 export RUBYOPT='rubygems'
