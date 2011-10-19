@@ -1,0 +1,2 @@
+# Send calendar attachments to Google Calendar
+text/calendar;  ics-gcal.py -f %s; copiousoutput; needsterminal
