@@ -84,7 +84,7 @@ export VISUAL=$EDITOR
 #export LESS="-i -n -R -F"
 
 # Configuration for SBT, the Scala Simple Build Tool
-export SBT_OPTS="-Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"
+export SBT_OPTS="-Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512m"
 
 # Ruby settings: this option automatically loads rubygems so that I don't need
 # any explicit require lines.
