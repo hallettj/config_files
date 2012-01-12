@@ -125,3 +125,6 @@ vnoremap <tab> %
 " Shortcuts for Fugitive commands.
 nnoremap <Leader>gs :Gstatus<cr>
 vnoremap <Leader>gs :Gstatus<cr>
+
+" Run slime.vim sessions in tmux
+let g:slime_target = "tmux"
