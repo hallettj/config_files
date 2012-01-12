@@ -61,12 +61,8 @@ prompt
  
 # Aliases. This first one is self-evident.
 alias ls="ls --color"
-# Used to get a colorized, pageable diff of the pending deploy.
-alias capdiff="cap deploy:pending:diff | ruby -e 'readline; print \$stdin.read' | colordiff | less"
-# twyt is a twitter commandline client. These are shorthand for viewing updates or making a tweet.
-alias twit="twyt friendstl"
-alias twoot="twyt tweet"
 alias ack="ack-grep"
+alias please="sudo"
 
 # I have so many things in ~/bin 
 export PATH=$HOME/local/node/bin:/home/jesse/bin:$PATH
@@ -98,7 +94,7 @@ fpath=(~/.zsh/functions/Completion $fpath)
 
 # Source ~/.zsh/local for configuration specific to this machine.
 [[ -s "$HOME/.zsh/local" ]] && source "$HOME/.zsh/local"
- 
+
 ## STOP CARING
  
 # The following lines were added by compinstall
