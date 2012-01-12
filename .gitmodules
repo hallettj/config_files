@@ -34,6 +34,6 @@
 [submodule ".vim/bundle/NrrwRgn"]
 	path = .vim/bundle/NrrwRgn
 	url = https://github.com/chrisbra/NrrwRgn.git
-[submodule "/home/jesse/.vim/bundle/vim-slime"]
-	path = /home/jesse/.vim/bundle/vim-slime
+[submodule ".vim/bundle/vim-slime"]
+	path = .vim/bundle/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
