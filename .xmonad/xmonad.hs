@@ -53,10 +53,12 @@ myKeys =
       ("M-<Backspace>", focusUrgent)
     , ("M-S-<Backspace>", clearUrgents)
 
-    , ("M-<Right>", nextScreen)
-    , ("M-<Left>",  prevScreen)
-    , ("M-S-<Right>", shiftNextScreen)
-    , ("M-S-<Left>",  shiftPrevScreen)
+    -- TODO: These screen-switching shortcuts conflict with browser
+    -- history shortcuts.
+    --, ("M-<Right>", nextScreen)
+    --, ("M-<Left>",  prevScreen)
+    --, ("M-S-<Right>", shiftNextScreen)
+    --, ("M-S-<Left>",  shiftPrevScreen)
     , ("M-s", swapNextScreen)
     , ("M-z", toggleWS)
 
