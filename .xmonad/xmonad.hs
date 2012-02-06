@@ -60,6 +60,8 @@ myKeys =
       ("M-<Backspace>", focusUrgent)
     , ("M-S-<Backspace>", clearUrgents)
 
+    , ("M-b", sendMessage ToggleGaps)
+
     -- TODO: These screen-switching shortcuts conflict with browser
     -- history shortcuts.
     --, ("M-<Right>", nextScreen)
