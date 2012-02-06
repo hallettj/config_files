@@ -1,3 +1,8 @@
+{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses #-}
+
+-- FlexibleInstances and MultiParamTypeClasses are necessary for the
+-- LayoutClass instance declaration of Flip.
+
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Config.Gnome
@@ -9,6 +14,8 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+
+import Control.Arrow ((***), second)
 import System.Exit
 
 import qualified XMonad.StackSet as W
@@ -102,10 +109,13 @@ myWorkspaceKeys =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayouts = smartBorders $ gaps [(U, 24)] $ tiled ||| Mirror tiled ||| Full
+myLayouts = smartBorders $ gaps [(U, 24)] $ tiled ||| leftTiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
+
+    -- like tiled, but puts the master window on the right
+    leftTiled = Flip tiled
 
     -- The default number of windows in the master pane
     nmaster = 1
@@ -116,6 +126,19 @@ myLayouts = smartBorders $ gaps [(U, 24)] $ tiled ||| Mirror tiled ||| Full
     -- Percent of screen to increment by when resizing panes
     delta   = 3/100
 
+-- | Flip a layout, compute its 180 degree rotated form.
+newtype Flip l a = Flip (l a) deriving (Show, Read)
+
+instance LayoutClass l a => LayoutClass (Flip l) a where
+    runLayout (W.Workspace i (Flip l) ms) r = (map (second flipRect) *** fmap Flip)
+                                                `fmap` runLayout (W.Workspace i l ms) (flipRect r)
+                                         where screenWidth = fromIntegral $ rect_width r
+                                               flipRect (Rectangle rx ry rw rh) = Rectangle (screenWidth - rx - (fromIntegral rw)) ry rw rh
+    handleMessage (Flip l) = fmap (fmap Flip) . handleMessage l
+    description (Flip l) = "Flip "++ description l
+
+------------------------------------------------------------------------
+-- Putting it all together
 main = xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "darkgreen", "-xs", "1"] }
                                  urgencyConfig { suppressWhen = Focused }
               $ gnomeConfig
