@@ -20,6 +20,9 @@ import System.Exit
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
+import Data.Monoid (All (All), mappend)
+
+import Monad
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
@@ -140,6 +143,44 @@ instance LayoutClass l a => LayoutClass (Flip l) a where
     description (Flip l) = "Flip "++ description l
 
 ------------------------------------------------------------------------
+-- Event Hooks:
+
+-- Helper functions to fullscreen the window
+fullFloat, tileWin :: Window -> X ()
+fullFloat w = windows $ W.float w r
+    where r = W.RationalRect 0 0 1 1
+tileWin w = windows $ W.sink w
+
+fullscreenEventHook :: Event -> X All
+fullscreenEventHook (ClientMessageEvent _ _ _ dpy win typ dat) = do
+    state <- getAtom "_NET_WM_STATE"
+    fullsc <- getAtom "_NET_WM_STATE_FULLSCREEN"
+    isFull <- runQuery isFullscreen win
+
+    -- Constants for the _NET_WM_STATE protocol
+    let remove = 0
+        add = 1
+        toggle = 2
+
+        -- The ATOM property type for changeProperty
+        ptype = 4
+
+        action = head dat
+
+    when (typ == state && (fromIntegral fullsc) `elem` tail dat) $ do
+        when (action == add || (action == toggle && not isFull)) $ do
+            io $ changeProperty32 dpy win state ptype propModeReplace [fromIntegral fullsc]
+            fullFloat win
+        when (head dat == remove || (action == toggle && isFull)) $ do
+            io $ changeProperty32 dpy win state ptype propModeReplace []
+            tileWin win
+
+    -- It shouldn't be necessary for xmonad to do anything more with this event
+    return $ All False
+
+fullscreenEventHook _ = return $ All True
+
+------------------------------------------------------------------------
 -- Putting it all together
 main = xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "darkgreen", "-xs", "1"] }
                                  urgencyConfig { suppressWhen = Focused }
@@ -147,6 +188,7 @@ main = xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "darkgreen", "
               { modMask = myModMask
               , workspaces = myWorkspaces
               , manageHook = myManageHook
+              , handleEventHook = handleEventHook gnomeConfig `mappend` fullscreenEventHook
               , layoutHook = myLayouts
               , startupHook = setWMName "LG3D"
               } `additionalKeysP` myKeys `additionalKeys` myWorkspaceKeys
