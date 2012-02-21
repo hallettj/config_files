@@ -1,0 +1,7 @@
+/*jslint laxbreak:true undef:true browser:true */
+/*global jive jQuery $j window module test asyncTest ok equal deepEqual strictEqual start */
+/*global test asyncTest ok equal deepEqual strictEqual notEqual notDeepEqual notStrictEqual start stop */
+/*global mock spy verify when replaceWithMock restore successfulPromise */
+/*global anything object string func instanceOf anyOf allOf */
+/*global Modernizr */
+/*global require module exports process __dirname define */

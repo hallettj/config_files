@@ -68,7 +68,8 @@ myKeys =
     --, ("M-<Left>",  prevScreen)
     --, ("M-S-<Right>", shiftNextScreen)
     --, ("M-S-<Left>",  shiftPrevScreen)
-    , ("M-s", swapNextScreen)
+    , ("M-s", nextScreen)
+    , ("M-S-s", swapNextScreen)
     , ("M-z", toggleWS)
 
     -- NamedScratchPad shortcuts
