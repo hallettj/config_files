@@ -82,7 +82,7 @@ augroup myfiletypes
 
   " When working with certain programming languages I want to indent
   " with 2 spaces instead of 4.
-  autocmd FileType ruby,python,haskell,eruby,haml,yaml,lua,io,scala set sw=2 sts=2
+  autocmd FileType coffee,ruby,python,haskell,eruby,haml,yaml,lua,io,scala set sw=2 sts=2
 
   " Use hard tabs with these file types.
   autocmd FileType snippet,gitconfig set noexpandtab
@@ -128,3 +128,12 @@ vnoremap <Leader>gs :Gstatus<cr>
 
 " Run slime.vim sessions in tmux
 let g:slime_target = "tmux"
+
+" Syntastic config
+let g:syntastic_enable_signs=0
+nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
+vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
+
+" vim-coffee-script config
+" Disable error highlighting on trailing spaces
+hi link coffeeSpaceError None

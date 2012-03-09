@@ -65,6 +65,11 @@
     "validthis"   : true,  // if 'this' inside a non-constructor function is valid.
     // This is a function scoped option only.
     "white"       : false,  // if strict whitespace rules apply
-    "wsh"         : false  // if the Windows Scripting Host environment globals
+    "wsh"         : false,  // if the Windows Scripting Host environment globals
     // should be predefined
+
+    // Extra globals
+    "predef": [
+        "define"
+    ]
 }
