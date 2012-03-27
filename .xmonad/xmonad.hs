@@ -35,21 +35,21 @@ myModMask = mod1Mask
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-myScratchPads = [ NS "pandora" spawnPandora findPandora manageMusic
-                , NS "rdio" spawnRdio findRdio manageMusic
+myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
+                , NS "rdio" spawnRdio findRdio (rightPanel 0.67)
                 ]
   where
     spawnPandora = "/opt/google/chrome/google-chrome '--app=http://www.pandora.com/'"
     findPandora = resource =? "www.pandora.com"
-    manageMusic = customFloating $ W.RationalRect l t w h
-      where
-        h = 1
-        w = 0.5
-        t = 1 - h
-        l = 1 - w
 
     spawnRdio = "/opt/google/chrome/google-chrome '--app=http://www.rdio.com/'"
     findRdio = resource =? "www.rdio.com"
+
+    rightPanel w = customFloating $ W.RationalRect l t w h
+      where
+        h = 1
+        t = 1 - h
+        l = 1 - w
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
