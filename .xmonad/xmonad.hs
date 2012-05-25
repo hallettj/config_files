@@ -22,7 +22,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Monoid (All (All), mappend)
 
-import Monad
+import Control.Monad (when)
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
