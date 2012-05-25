@@ -14,8 +14,8 @@ set from = "jesse.hallett@jivesoftware.com"
 set realname = "Jesse Hallett"
 
 # Saves a copy of outgoing mail to INBOX for conversation threading.
-fcc-hook ~A =INBOX
-set copy=yes
+#fcc-hook ~A =INBOX
+#set copy=yes
 
 # Point mutt to the Exchange LDAP database. Press tab to complete LDAP
 # addresses.

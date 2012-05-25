@@ -1,3 +1,4 @@
 # Send calendar attachments to Google Calendar
-text/calendar;  ics-gcal.py -f %s; copiousoutput; needsterminal
-application/pdf;    evince %s & sleep 1;
+text/calendar;    ics-gcal.py -f %s; copiousoutput; needsterminal
+application/pdf;  evince %s & sleep 1;
+image/png;        eog %s & sleep 3;
