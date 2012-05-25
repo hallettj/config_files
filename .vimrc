@@ -58,11 +58,15 @@ let NERDCustomDelimiters = {
 
 " Customizations for Command-T
 let g:CommandTMaxFiles = 30000
-set wildignore+=target/java/**,*.class,*.jar
+set wildignore+=**/target,*.class,*.jar
 
-" Remove menu bar, toolbar, and scrollbars
-set guioptions+=mTLlRrb
-set guioptions-=mTLlRrb
+if has('gui_running')
+  " Remove menu bar, toolbar, and scrollbars
+  set guioptions+=mTLlRrb
+  set guioptions-=mTLlRrb
+
+  set guifont=Ubuntu\ Mono\ 12
+endif
 
 colorscheme desert
 
