@@ -9,6 +9,11 @@ SAVEHIST=2500
 # Append new history lines to .histfile when the shell closes (instead of clobbering it).
 # A must-have for someone who uses a lot of ZSH sessions (I have 5-10 open at any given time).
 setopt appendhistory
+# Do not record commands in .histfile if there is a leading space.
+setopt hist_ignore_space
+# If a command is given several times in succession only record one
+# entry in history.
+setopt hist_ignore_dups
 # Type the name of a directory to cd into it. The laziest option ever.
 setopt autocd
 # Lets me cd into any directory immediately under the given paths
@@ -65,7 +70,7 @@ alias ack="ack-grep"
 alias please="sudo"
 
 # I have so many things in ~/bin 
-export PATH=$HOME/local/node/bin:/home/jesse/bin:$PATH
+export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/bin:$PATH
 # That's right
 export EDITOR=vim
 # And again
@@ -118,5 +123,3 @@ zstyle :compinstall filename '/home/mboeh/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
