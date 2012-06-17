@@ -18,7 +18,7 @@ setopt hist_ignore_dups
 setopt autocd
 # Lets me cd into any directory immediately under the given paths
 # without typing the full path.
-cdpath=($HOME $HOME/projects $HOME/projects/*)
+cdpath=($HOME $HOME/projects)
 # Expansions also work if zsh is prompting you, not just on the command line.
 setopt prompt_subst
 # Turn off irritating/unsightly beeps when expansion fails.
