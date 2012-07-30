@@ -1,21 +1,19 @@
-{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses #-}
-
--- FlexibleInstances and MultiParamTypeClasses are necessary for the
--- LayoutClass instance declaration of Flip.
-
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Config.Gnome
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.MarkAsUrgent (markAsUrgent)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Flip (Flip(..))
 import XMonad.Layout.Gaps
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace (onWorkspaces)
+import XMonad.Layout.ResizableTile (MirrorResize(MirrorExpand, MirrorShrink), ResizableTall(..))
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
 
-import Control.Arrow ((***), second)
 import System.Exit
 
 import qualified XMonad.StackSet as W
@@ -28,6 +26,8 @@ myManageHook = composeAll (
     [ manageHook gnomeConfig
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-lancher" --> doIgnore
+    , className =? "Empathy" --> doF (W.shift "3") <+> markAsUrgent
+    , className =? "Pidgin" --> doF (W.shift "3") <+> markAsUrgent
     , isFullscreen --> doFullFloat
     ]) <+> namedScratchpadManageHook myScratchPads
 
@@ -64,6 +64,8 @@ myKeys =
     , ("M-S-<Backspace>", clearUrgents)
 
     , ("M-b", sendMessage ToggleGaps)
+    , ("M-a", sendMessage MirrorShrink)
+    , ("M-;", sendMessage MirrorExpand)
 
     -- TODO: These screen-switching shortcuts conflict with browser
     -- history shortcuts.
@@ -115,10 +117,10 @@ myWorkspaceKeys =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayouts = smartBorders $ gaps [(U, 24)] $ tiled ||| leftTiled ||| Full
+myLayouts = smartBorders $ gaps [(U, 24)] $ onWorkspaces ["1", "4", "7", "8"] leftTiled tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled   = Tall nmaster delta ratio
+    tiled   = ResizableTall nmaster delta ratio []
 
     -- like tiled, but puts the master window on the right
     leftTiled = Flip tiled
@@ -131,17 +133,6 @@ myLayouts = smartBorders $ gaps [(U, 24)] $ tiled ||| leftTiled ||| Full
 
     -- Percent of screen to increment by when resizing panes
     delta   = 3/100
-
--- | Flip a layout, compute its 180 degree rotated form.
-newtype Flip l a = Flip (l a) deriving (Show, Read)
-
-instance LayoutClass l a => LayoutClass (Flip l) a where
-    runLayout (W.Workspace i (Flip l) ms) r = (map (second flipRect) *** fmap Flip)
-                                                `fmap` runLayout (W.Workspace i l ms) (flipRect r)
-                                         where screenWidth = fromIntegral $ rect_width r
-                                               flipRect (Rectangle rx ry rw rh) = Rectangle (screenWidth - rx - (fromIntegral rw)) ry rw rh
-    handleMessage (Flip l) = fmap (fmap Flip) . handleMessage l
-    description (Flip l) = "Flip "++ description l
 
 ------------------------------------------------------------------------
 -- Event Hooks:
