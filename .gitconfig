@@ -25,6 +25,7 @@
     di  = diff --cached
     fix = !vim $(git-ls-files --unmerged | cut -f2 | uniq)
     pend = log origin/master..HEAD
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [url "git@github.com"]
     insteadOf = gh
 [core]
