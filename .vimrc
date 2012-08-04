@@ -139,8 +139,8 @@ nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
 vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
 
 " Shortcut to open Tagbar
-nnoremap <silent> <Leader>t :TagbarToggle<cr>
-vnoremap <silent> <Leader>t :TagbarToggle<cr>
+nnoremap <silent> <Leader>t :TagbarOpen j<cr>
+vnoremap <silent> <Leader>t :TagbarOpen j<cr>
 
 " vim-coffee-script config
 " Disable error highlighting on trailing spaces
