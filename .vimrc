@@ -120,7 +120,12 @@ set statusline=%<\ %n:%f\ %m%r%y%=%{fugitive#statusline()}\ %-35.(line:\ %l\ of\
 
 " Load matchit to bounce between do and end in Ruby and between opening
 " and closing tags in HTML.
-runtime! macros/matchit.vim
+if has('gui_running')
+    runtime! macros/matchit.vim
+else
+    set noshowmatch
+    let loaded_matchparen = 1  " Prevents DoMatchParen plugin from loading.
+endif
 
 " Bounce between bracket pairs with the <tab> key.
 nnoremap <tab> %
