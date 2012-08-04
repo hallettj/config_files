@@ -70,7 +70,7 @@ alias ack="ack-grep"
 alias please="sudo"
 
 # I have so many things in ~/bin 
-export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/bin:$PATH
+export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/.cabal/bin:/home/jesse/bin:$PATH
 # That's right
 export EDITOR=vim
 # And again
