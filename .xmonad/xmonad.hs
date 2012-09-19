@@ -42,10 +42,10 @@ myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
                 , NS "rdio" spawnRdio findRdio (rightPanel 0.67)
                 ]
   where
-    spawnPandora = "/opt/google/chrome/google-chrome '--app=http://www.pandora.com/'"
+    spawnPandora = "/opt/google/chrome/chrome '--app=http://www.pandora.com/'"
     findPandora = resource =? "www.pandora.com"
 
-    spawnRdio = "/opt/google/chrome/google-chrome '--app=http://www.rdio.com/'"
+    spawnRdio = "/opt/google/chrome/chrome '--app=http://www.rdio.com/'"
     findRdio = resource =? "www.rdio.com"
 
     rightPanel w = customFloating $ W.RationalRect l t w h
