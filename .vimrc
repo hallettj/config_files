@@ -58,7 +58,7 @@ let NERDCustomDelimiters = {
 
 " Customizations for Command-T
 let g:CommandTMaxFiles = 30000
-set wildignore+=**/target,*.class,*.jar
+set wildignore+=**/target,*.class,*.jar,*.o,*.hi
 
 if has('gui_running')
   " Remove menu bar, toolbar, and scrollbars
@@ -143,9 +143,9 @@ let g:syntastic_enable_signs=0
 nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
 vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
 
-" Shortcut to open Tagbar
-nnoremap <silent> <Leader>t :TagbarOpen j<cr>
-vnoremap <silent> <Leader>t :TagbarOpen j<cr>
+"" Shortcut to open Tagbar
+"nnoremap <silent> <Leader>tt :TagbarOpen j<cr>
+"vnoremap <silent> <Leader>tt :TagbarOpen j<cr>
 
 " vim-coffee-script config
 " Disable error highlighting on trailing spaces
