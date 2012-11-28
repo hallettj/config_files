@@ -86,7 +86,7 @@ augroup myfiletypes
 
   " When working with certain programming languages I want to indent
   " with 2 spaces instead of 4.
-  autocmd FileType coffee,ruby,python,haskell,eruby,haml,yaml,lua,io,scala set sw=2 sts=2
+  autocmd FileType coffee,ruby,python,eruby,haml,yaml,lua,io,scala setlocal sw=2 sts=2
 
   " Use hard tabs with these file types.
   autocmd FileType snippet,gitconfig set noexpandtab
