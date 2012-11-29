@@ -42,7 +42,8 @@ myModMask = mod1Mask
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
-                , NS "rdio" spawnRdio findRdio (rightPanel 0.67)
+                , NS "rdio"    spawnRdio    findRdio    (rightPanel 0.67)
+                , NS "pidgin"  spawnPidgin  findPidgin  (rightPanel 0.25)
                 ]
   where
     spawnPandora = "/opt/google/chrome/chrome '--app=http://www.pandora.com/'"
@@ -51,11 +52,16 @@ myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
     spawnRdio = "/opt/google/chrome/chrome '--app=http://www.rdio.com/'"
     findRdio = resource =? "www.rdio.com"
 
+    spawnPidgin = "pidgin"
+    findPidgin  = role =? "buddy_list"
+
     rightPanel w = customFloating $ W.RationalRect l t w h
       where
         h = 1
         t = 1 - h
         l = 1 - w
+
+    role = stringProperty "WM_WINDOW_ROLE"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -85,6 +91,7 @@ myKeys =
     -- reducing the number of windows on the left side of the screen.
     , ("M-, p", namedScratchpadAction myScratchPads "pandora")
     , ("M-, r", namedScratchpadAction myScratchPads "rdio")
+    , ("M-, c", namedScratchpadAction myScratchPads "pidgin")
     ]
 
 myWorkspaceKeys :: [((ButtonMask, KeySym), X ())]
