@@ -91,7 +91,7 @@ myKeys =
     -- reducing the number of windows on the left side of the screen.
     , ("M-, p", namedScratchpadAction myScratchPads "pandora")
     , ("M-, r", namedScratchpadAction myScratchPads "rdio")
-    , ("M-, c", namedScratchpadAction myScratchPads "pidgin")
+    , ("M-, b", namedScratchpadAction myScratchPads "pidgin")
     ]
 
 myWorkspaceKeys :: [((ButtonMask, KeySym), X ())]
