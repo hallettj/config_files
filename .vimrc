@@ -127,6 +127,9 @@ else
     let loaded_matchparen = 1  " Prevents DoMatchParen plugin from loading.
 endif
 
+" I don't want code to be folded when I open a file.
+set nofoldenable
+
 " Bounce between bracket pairs with the <tab> key.
 nnoremap <tab> %
 vnoremap <tab> %
