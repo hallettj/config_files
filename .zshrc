@@ -68,6 +68,7 @@ prompt
 alias ls="ls --color"
 alias ack="ack-grep"
 alias please="sudo"
+alias beep="aplay --quiet /usr/share/sounds/pop.wav"
 
 # I have so many things in ~/bin 
 export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/.cabal/bin:/home/jesse/bin:$PATH
