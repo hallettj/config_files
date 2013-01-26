@@ -41,4 +41,4 @@ auto_view text/html
 set header_cache=$HOME/.mutt/cache
 set message_cachedir=$HOME/.mutt/cache
 
-macro index ,a <tag-prefix-cond><save-message>=Archives/2012<enter> "Save tagged messages (if any) to =Archives/2012"
+macro index ,a <tag-prefix-cond><save-message>=Archives/2013<enter> "Save tagged messages (if any) to =Archives/2013"
