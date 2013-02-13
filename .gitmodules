@@ -49,3 +49,9 @@
 [submodule ".vim/bundle/vimux"]
 	path = .vim/bundle/vimux
 	url = https://github.com/benmills/vimux.git
+[submodule ".grunt-init/gruntfile"]
+	path = .grunt-init/gruntfile
+	url = https://github.com/gruntjs/grunt-init-gruntfile.git
+[submodule ".grunt-init/jquery"]
+	path = .grunt-init/jquery
+	url = https://github.com/gruntjs/grunt-init-jquery.git
