@@ -69,9 +69,13 @@ alias ls="ls --color"
 alias ack="ack-grep"
 alias please="sudo"
 alias beep="aplay --quiet /usr/share/sounds/pop.wav"
+alias t="todo.sh -d ~/Dropbox/todo/todo.cfg"
+
+# Instructs shell to use todo.sh completions for the command `t`.
+compdef _todo.sh t
 
 # I have so many things in ~/bin 
-export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/.cabal/bin:/home/jesse/bin:$PATH
+export PATH=$HOME/local/node/bin:$HOME/.rvm/bin:/home/jesse/.cabal/bin:/home/jesse/bin:~/Dropbox/todo:$PATH
 # That's right
 export EDITOR=vim
 # And again
