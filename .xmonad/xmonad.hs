@@ -28,7 +28,7 @@ myManageHook = composeAll (
     , className =? "Unity-2d-lancher" --> doIgnore
     , className =? "Empathy"          --> doF (W.shift "3") <+> markAsUrgent
     , className =? "Pidgin"           --> doF (W.shift "3") <+> markAsUrgent
-    , className =? "Steam"            --> doFloat           <+> doIgnore
+    , className =? "Steam"            --> doFloat        --   <+> doIgnore
     , className =? "steam"            --> doFullFloat  -- bigpicture-mode
     , isFullscreen                    --> doFullFloat
     , isDialog                        --> doCenterFloat
