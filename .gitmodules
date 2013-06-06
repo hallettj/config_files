@@ -55,3 +55,9 @@
 [submodule ".grunt-init/jquery"]
 	path = .grunt-init/jquery
 	url = https://github.com/gruntjs/grunt-init-jquery.git
+[submodule ".vim/bundle/unite.vim"]
+	path = .vim/bundle/unite.vim
+	url = https://github.com/Shougo/unite.vim.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
