@@ -1,13 +1,140 @@
 set nocompatible          " We're running Vim, not Vi!
 
-" Needed on some linux distros.
-" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-syntax on                 " Enable syntax highlighting
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
+
+" Recommended to install
+NeoBundleDepends 'Shougo/vimproc', {
+      \ 'build': {
+        \ 'mac': 'make -f make_mac.mak',
+        \ 'unix': 'make -f make_unix.mak',
+        \ 'cygwin': 'make -f make_cygwin.mak',
+        \ 'windows': '"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\nmake.exe" make_msvc32.mak',
+      \ },
+    \ }
+
+" Customizations for Unite
+" copied from https://github.com/bling/dotvim/blob/master/vimrc
+NeoBundle 'Shougo/unite.vim' "{{{
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  call unite#set_profile('files', 'smartcase', 1)
+
+  let g:unite_data_directory='~/.vim/.cache/unite'
+  let g:unite_enable_start_insert=1
+  let g:unite_source_history_yank_enable=1
+  let g:unite_source_file_rec_max_cache_files=5000
+  let g:unite_prompt='» '
+
+  function! s:unite_settings()
+    nmap <buffer> Q <plug>(unite_exit)
+    nmap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <esc> <plug>(unite_exit)
+  endfunction
+  autocmd FileType unite call s:unite_settings()
+
+  nmap <space> [unite]
+  nnoremap [unite] <nop>
+
+  nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr>
+  nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr>
+  nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+  nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+  nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+  nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
+  nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical -winwidth=35 outline<cr>
+  nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+"}}}
+
+NeoBundle 'kien/ctrlp.vim' "{{{
+  let g:ctrlp_clear_cache_on_exit=1
+  let g:ctrlp_max_height=40
+  let g:ctrlp_show_hidden=0
+  let g:ctrlp_follow_symlinks=1
+  let g:ctrlp_working_path_mode=0
+  let g:ctrlp_max_files=20000
+  let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+"}}}
+
+NeoBundle 'tpope/vim-fugitive' "{{{
+  nnoremap <silent> <leader>gs :Gstatus<CR>
+  nnoremap <silent> <leader>gd :Gdiff<CR>
+  nnoremap <silent> <leader>gc :Gcommit<CR>
+  nnoremap <silent> <leader>gb :Gblame<CR>
+  nnoremap <silent> <leader>gl :Glog<CR>
+  nnoremap <silent> <leader>gp :Git push<CR>
+  nnoremap <silent> <leader>gw :Gwrite<CR>
+  nnoremap <silent> <leader>gr :Gremove<CR>
+  autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+"}}}
+
+NeoBundle 'scrooloose/nerdtree' "{{{
+  let NERDTreeShowHidden=1
+  let NERDTreeQuitOnOpen=0
+  let NERDTreeShowLineNumbers=1
+  let NERDTreeChDirMode=0
+  let NERDTreeShowBookmarks=1
+  let NERDTreeIgnore=['\.git','\.hg']
+  let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+  nnoremap <F2> :NERDTreeToggle<CR>
+  nnoremap <F3> :NERDTreeFind<CR>
+"}}}
+
+NeoBundle 'scrooloose/nerdcommenter' "{{{
+  let NERDSpaceDelims = 1
+  let NERD_ftl_alt_style=1
+  let NERDCustomDelimiters = {
+      \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
+  \ }
+"}}}
+
+NeoBundle 'scrooloose/syntastic' "{{{
+  let g:syntastic_error_symbol = '✗'
+  let g:syntastic_style_error_symbol = '✠'
+  let g:syntastic_warning_symbol = '∆'
+  let g:syntastic_style_warning_symbol = '≈'
+  let g:syntastic_enable_signs=0
+  nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
+  vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
+"}}}
+
+NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
+  nnoremap <silent> <Leader>tt :TagbarOpen j<cr>
+  vnoremap <silent> <Leader>tt :TagbarOpen j<cr>
+"}}}
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'IndentAnything'
+NeoBundle 'pangloss/vim-javascript'
+
+NeoBundle 'maksimr/vim-jsbeautify' "{{{
+  nnoremap <leader>fjs :call JsBeautify()<cr>
+"}}}
+
+NeoBundle 'kchmck/vim-coffee-script' "{{{
+  " Disable error highlighting on trailing spaces
+  hi link coffeeSpaceError None
+"}}}
+
+NeoBundle 'benmills/vimux'
+NeoBundle 'jpalardy/vim-slime' "{{{
+  " Run slime.vim sessions in tmux
+  let g:slime_target = "tmux"
+"}}}
+
+syntax on
 filetype plugin indent on " Enable filetype-specific indenting and plugins
+
+" Installation check.
+NeoBundleCheck
 
 " Map <Leader> to , key
 let mapleader = ","
@@ -49,49 +176,7 @@ set listchars=tab:▸\ ,eol:¬
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" NERD Commenter preferences
-let NERDSpaceDelims = 1
-let NERD_ftl_alt_style=1
-let NERDCustomDelimiters = {
-    \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
-\ }
-
-" Customizations for Command-T
-let g:CommandTMaxFiles = 30000
 set wildignore+=**/target,*.class,*.jar,*.o,*.hi
-
-
-" Customizations for Unite
-" copied from https://github.com/bling/dotvim/blob/master/vimrc
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
-
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_file_rec_max_cache_files=5000
-let g:unite_prompt='» '
-
-function! s:unite_settings()
-  nmap <buffer> Q <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
-endfunction
-autocmd FileType unite call s:unite_settings()
-
-nmap <space> [unite]
-nnoremap [unite] <nop>
-
-nnoremap <silent> [unite]<space> :<C-u>Unite -resume -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<cr>
-nnoremap <silent> [unite]f :<C-u>Unite -resume -auto-resize -buffer-name=files file_rec/async<cr>
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap <silent> [unite]/ :<C-u>Unite -auto-resize -buffer-name=search grep:.<cr>
-nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical -winwidth=35 outline<cr>
-nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-
 
 if has('gui_running')
   " Remove menu bar, toolbar, and scrollbars
@@ -166,23 +251,3 @@ set nofoldenable
 " Bounce between bracket pairs with the <tab> key.
 nnoremap <tab> %
 vnoremap <tab> %
-
-" Shortcuts for Fugitive commands.
-nnoremap <Leader>gs :Gstatus<cr>
-vnoremap <Leader>gs :Gstatus<cr>
-
-" Run slime.vim sessions in tmux
-let g:slime_target = "tmux"
-
-" Syntastic config
-let g:syntastic_enable_signs=0
-nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
-vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
-
-"" Shortcut to open Tagbar
-"nnoremap <silent> <Leader>tt :TagbarOpen j<cr>
-"vnoremap <silent> <Leader>tt :TagbarOpen j<cr>
-
-" vim-coffee-script config
-" Disable error highlighting on trailing spaces
-hi link coffeeSpaceError None

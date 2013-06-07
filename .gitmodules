@@ -1,63 +1,9 @@
-[submodule ".vim/bundle/jslint.vim"]
-	path = .vim/bundle/jslint.vim
-	url = git://github.com/hallettj/jslint.vim.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/Command-T"]
-	path = .vim/bundle/Command-T
-	url = https://github.com/wincent/Command-T.git
-[submodule ".vim/bundle/blackboard"]
-	path = .vim/bundle/blackboard
-	url = https://github.com/nelstrom/vim-blackboard.git
-[submodule ".vim/bundle/vividchalk"]
-	path = .vim/bundle/vividchalk
-	url = https://github.com/tpope/vim-vividchalk.git
-[submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule ".vim/bundle/snipmate"]
-	path = .vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
-[submodule ".vim/bundle/sparkup"]
-	path = .vim/bundle/sparkup
-	url = https://github.com/bingaman/vim-sparkup.git
-[submodule ".vim/bundle/surround"]
-	path = .vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/repeat"]
-	path = .vim/bundle/repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule ".vim/bundle/NrrwRgn"]
-	path = .vim/bundle/NrrwRgn
-	url = https://github.com/chrisbra/NrrwRgn.git
-[submodule ".vim/bundle/vim-slime"]
-	path = .vim/bundle/vim-slime
-	url = https://github.com/jpalardy/vim-slime.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-[submodule ".vim/bundle/vim-coffee-script"]
-	path = .vim/bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule ".vim/bundle/tagbar"]
-	path = .vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
-[submodule ".vim/bundle/vimux"]
-	path = .vim/bundle/vimux
-	url = https://github.com/benmills/vimux.git
 [submodule ".grunt-init/gruntfile"]
 	path = .grunt-init/gruntfile
 	url = https://github.com/gruntjs/grunt-init-gruntfile.git
 [submodule ".grunt-init/jquery"]
 	path = .grunt-init/jquery
 	url = https://github.com/gruntjs/grunt-init-jquery.git
-[submodule ".vim/bundle/unite.vim"]
-	path = .vim/bundle/unite.vim
-	url = https://github.com/Shougo/unite.vim.git
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/neobundle.vim"]
+	path = .vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim.git
