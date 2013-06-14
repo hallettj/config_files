@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PERSONAL_LOG_DIR=~/Dropbox/logs
+exec node ~/opt/log/app.js
