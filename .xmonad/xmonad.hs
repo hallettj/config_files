@@ -41,9 +41,10 @@ myModMask = mod1Mask
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
-                , NS "rdio"    spawnRdio    findRdio    (rightPanel 0.67)
-                , NS "pidgin"  spawnPidgin  findPidgin  (rightPanel 0.25)
+myScratchPads = [ NS "pandora"      spawnPandora     findPandora     (rightPanel 0.50)
+                , NS "rdio"         spawnRdio        findRdio        (rightPanel 0.67)
+                , NS "google music" spawnGoogleMusic findGoogleMusic (rightPanel 0.67)
+                , NS "pidgin"       spawnPidgin      findPidgin      (rightPanel 0.25)
                 ]
   where
     spawnPandora = "/opt/google/chrome/chrome '--app=http://www.pandora.com/'"
@@ -51,6 +52,9 @@ myScratchPads = [ NS "pandora" spawnPandora findPandora (rightPanel 0.5)
 
     spawnRdio = "/opt/google/chrome/chrome '--app=http://www.rdio.com/'"
     findRdio = resource =? "www.rdio.com"
+
+    spawnGoogleMusic = "/opt/google/chrome/chrome '--app=https://play.google.com/music'"
+    findGoogleMusic = resource =? "play.google.com"
 
     spawnPidgin = "pidgin"
     findPidgin  = role =? "buddy_list"
@@ -91,6 +95,7 @@ myKeys =
     -- reducing the number of windows on the left side of the screen.
     , ("M-, p", namedScratchpadAction myScratchPads "pandora")
     , ("M-, r", namedScratchpadAction myScratchPads "rdio")
+    , ("M-, m", namedScratchpadAction myScratchPads "google music")
     , ("M-, b", namedScratchpadAction myScratchPads "pidgin")
     ]
 

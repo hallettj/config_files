@@ -45,6 +45,9 @@ set formatoptions=cqrn1
 set list
 set listchars=tab:▸\ ,eol:¬
 
+" Highlights the given column.
+set colorcolumn=80
+
 " Store temp files in a central location
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -65,6 +68,7 @@ colorscheme desert
 highlight NonText guibg=grey20 guifg=grey30
 " Set color for tab characters for desert theme.
 highlight SpecialKey guibg=grey20 guifg=grey30
+highlight ColorColumn guibg=grey21 ctermbg=darkgray
 
 " Automatically save when the window loses focus or when a buffer is
 " hidden.
@@ -125,6 +129,32 @@ set nofoldenable
 nnoremap <tab> %
 vnoremap <tab> %
 
+" window manipulation
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
+set splitbelow
+set splitright
+
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    let curNum = winnr()            "Mark destination
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    let markedBuf = bufnr( "%" )    "Switch to source and shuffle dest->source
+    exe 'hide buf' curBuf
+    exe curNum . "wincmd w"
+    exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
 
@@ -177,7 +207,7 @@ NeoBundle 'kien/ctrlp.vim' "{{{
   let g:ctrlp_show_hidden=0
   let g:ctrlp_follow_symlinks=1
   let g:ctrlp_working_path_mode=0
-  let g:ctrlp_max_files=20000
+  let g:ctrlp_max_files=60000
   let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
 "}}}
 
@@ -242,6 +272,8 @@ NeoBundle 'kchmck/vim-coffee-script' "{{{
   " Disable error highlighting on trailing spaces
   hi link coffeeSpaceError None
 "}}}
+
+NeoBundle 'jhenahan/idris-vim'
 
 NeoBundle 'benmills/vimux'
 NeoBundle 'jpalardy/vim-slime' "{{{
