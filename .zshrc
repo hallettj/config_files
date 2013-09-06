@@ -98,6 +98,9 @@ export RUBYOPT='rubygems'
 
 # Run multiple Ruby versions with RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+#
+# Run multiple Node.js versions with nvm
+[[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh"  # This loads nvm into a shell session.
 
 # Tells zsh where to look for completion scripts.
 fpath=(~/.zsh/functions/Completion $fpath)
