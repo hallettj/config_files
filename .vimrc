@@ -289,8 +289,8 @@ NeoBundle 'altercation/vim-colors-solarized' "{{{
   colorscheme solarized
   highlight CursorLineNr cterm=none ctermfg=0 guifg=#073642
   highlight NonText      cterm=none ctermfg=0 guifg=#073642
-  highlight SpecialKey   cterm=none ctermfg=0 guifg=#073642
-  highlight ColorColumn  cterm=none ctermfg=0 guifg=#073642
+  highlight SpecialKey   cterm=none ctermfg=0 guifg=#073642 guibg=#002b36
+  highlight ColorColumn  cterm=none ctermfg=0               guibg=#073642
 "}}}
 
 " Installation check.
