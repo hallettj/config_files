@@ -286,11 +286,8 @@ NeoBundle 'sotte/presenting.vim'
 NeoBundle 'altercation/vim-colors-solarized' "{{{
   set background=dark
   set t_Co=16
+  let g:solarized_visibility="low" "Specifies contrast of invisibles.
   colorscheme solarized
-  highlight CursorLineNr cterm=none ctermfg=0 guifg=#073642
-  highlight NonText      cterm=none ctermfg=0 guifg=#073642
-  highlight SpecialKey   cterm=none ctermfg=0 guifg=#073642 guibg=#002b36
-  highlight ColorColumn  cterm=none ctermfg=0               guibg=#073642
 "}}}
 
 " Installation check.
