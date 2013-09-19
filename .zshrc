@@ -47,7 +47,9 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 	(( count = $count + 1 ))
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
- 
+
+[[ -s "$HOME/.dircolors" ]] && eval `dircolors "$HOME/.dircolors"`
+
 # ... this prompt, which gives me a red branch name if I'm in a git directory.
 #export PROMPT='[%n@%m:%~] ${PR_RED}$(git current-branch)${PR_NO_COLOR} %# '
 

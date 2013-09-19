@@ -62,13 +62,13 @@ if has('gui_running')
   set guifont=Ubuntu\ Mono\ 12
 endif
 
-colorscheme desert
+" colorscheme desert
 
-" Set color for end-of-line characters for desert theme.
-highlight NonText guibg=grey20 guifg=grey30
-" Set color for tab characters for desert theme.
-highlight SpecialKey guibg=grey20 guifg=grey30
-highlight ColorColumn guibg=grey21 ctermbg=darkgray
+" " Set color for end-of-line characters for desert theme.
+" highlight NonText guibg=grey20 guifg=grey30
+" " Set color for tab characters for desert theme.
+" highlight SpecialKey guibg=grey20 guifg=grey30
+" highlight ColorColumn guibg=grey21 ctermbg=darkgray
 
 " Automatically save when the window loses focus or when a buffer is
 " hidden.
@@ -282,6 +282,16 @@ NeoBundle 'jpalardy/vim-slime' "{{{
 "}}}
 
 NeoBundle 'sotte/presenting.vim'
+
+NeoBundle 'altercation/vim-colors-solarized' "{{{
+  set background=dark
+  set t_Co=16
+  colorscheme solarized
+  highlight CursorLineNr cterm=none ctermfg=0 guifg=#073642
+  highlight NonText      cterm=none ctermfg=0 guifg=#073642
+  highlight SpecialKey   cterm=none ctermfg=0 guifg=#073642
+  highlight ColorColumn  cterm=none ctermfg=0 guifg=#073642
+"}}}
 
 " Installation check.
 NeoBundleCheck
