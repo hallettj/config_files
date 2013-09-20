@@ -57,6 +57,9 @@ unsetopt nomatch
 # Wait until the next prompt is printed to say whether a job is finished.
 unsetopt notify
 
+# Exporting options for less breaks `git diff`.  Not sure why.
+unset LESS
+
 # Use Solarized theme colors for directory listings
 [[ -s "$HOME/.dircolors" ]] && eval `dircolors "$HOME/.dircolors"`
 
