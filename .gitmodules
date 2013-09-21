@@ -13,3 +13,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".mutt/mutt-colors-solarized"]
+	path = .mutt/mutt-colors-solarized
+	url = https://github.com/altercation/mutt-colors-solarized.git
