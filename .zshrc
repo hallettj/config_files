@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="pygmalion"
+ZSH_THEME="sunrise"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -62,6 +62,20 @@ unset LESS
 
 # Use Solarized theme colors for directory listings
 [[ -s "$HOME/.dircolors" ]] && eval `dircolors "$HOME/.dircolors"`
+
+# Customizes terminal titles
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%1~" #Just the name of the working directory
+
+# Prompt customizations
+ZSH_THEME_GIT_PROMPT_UNTRACKED=""
+
+# Right-prompt customizations
+local return_code="%(?..%{$R%}%? ↵%{$RESET%})"
+function custom_vi_mode_prompt_info() {
+  # Displays indicator when in insert mode or non-zero exit status
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/$return_code}"
+}
+RPS1='$(custom_vi_mode_prompt_info)'
 
 # Aliases
 alias ack="ack-grep"
