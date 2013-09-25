@@ -209,6 +209,8 @@ NeoBundle 'kien/ctrlp.vim' "{{{
   let g:ctrlp_working_path_mode=0
   let g:ctrlp_max_files=60000
   let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+  nnoremap <silent> <leader>t :CtrlP<cr>
+  nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 "}}}
 
 NeoBundle 'tpope/vim-fugitive' "{{{
@@ -232,8 +234,8 @@ NeoBundle 'scrooloose/nerdtree' "{{{
   let NERDTreeShowBookmarks=1
   let NERDTreeIgnore=['\.git','\.hg']
   let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-  nnoremap <F2> :NERDTreeToggle<CR>
-  nnoremap <F3> :NERDTreeFind<CR>
+  nnoremap <silent> <leader>d :NERDTreeToggle<CR>
+  nnoremap <silent> <leader>f :NERDTreeFind<CR>
 "}}}
 
 NeoBundle 'scrooloose/nerdcommenter' "{{{
@@ -255,8 +257,8 @@ NeoBundle 'scrooloose/syntastic' "{{{
 "}}}
 
 NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
-  nnoremap <silent> <Leader>t :TagbarOpen j<cr>
-  vnoremap <silent> <Leader>t :TagbarOpen j<cr>
+  nnoremap <silent> <Leader>] :TagbarToggle<cr>
+  vnoremap <silent> <Leader>] :TagbarToggle<cr>
 "}}}
 
 NeoBundle 'tpope/vim-surround'
@@ -288,6 +290,16 @@ NeoBundle 'altercation/vim-colors-solarized' "{{{
   set t_Co=16
   let g:solarized_visibility="low" "Specifies contrast of invisibles.
   colorscheme solarized
+"}}}
+
+NeoBundle 'mileszs/ack.vim' "{{{
+  nnoremap <silent> <leader>a :Ack<space>
+"}}}
+
+NeoBundle 'bling/vim-airline' "{{{
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12
+  let g:airline_powerline_fonts = 1
+  set noshowmode  " Mode is indicated in status line instead.
 "}}}
 
 " Installation check.
