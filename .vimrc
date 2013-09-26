@@ -232,8 +232,8 @@ NeoBundle 'scrooloose/nerdtree' "{{{
   let NERDTreeShowBookmarks=1
   let NERDTreeIgnore=['\.git','\.hg']
   let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
-  nnoremap <F2> :NERDTreeToggle<CR>
-  nnoremap <F3> :NERDTreeFind<CR>
+  nnoremap <silent> <leader>d :NERDTreeToggle<CR>
+  nnoremap <silent> <leader>f :NERDTreeFind<CR>
 "}}}
 
 NeoBundle 'scrooloose/nerdcommenter' "{{{
@@ -255,8 +255,8 @@ NeoBundle 'scrooloose/syntastic' "{{{
 "}}}
 
 NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
-  nnoremap <silent> <Leader>t :TagbarOpen j<cr>
-  vnoremap <silent> <Leader>t :TagbarOpen j<cr>
+  nnoremap <silent> <Leader>] :TagbarToggle<cr>
+  vnoremap <silent> <Leader>] :TagbarToggle<cr>
 "}}}
 
 NeoBundle 'tpope/vim-surround'
@@ -300,6 +300,22 @@ NeoBundle 'airblade/vim-gitgutter' "{{{
   let g:gitgutter_enabled = 0
   nnoremap <silent> <leader>gg :GitGutterToggle<cr>
   vnoremap <silent> <leader>gg :GitGutterToggle<cr>
+"}}}
+
+NeoBundle 'mileszs/ack.vim' "{{{
+  nnoremap <silent> <leader>a :Ack<space>
+"}}}
+
+NeoBundle 'bling/vim-airline' "{{{
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12
+  let g:airline_powerline_fonts = 1
+  set noshowmode  " Mode is indicated in status line instead.
+"}}}
+
+NeoBundle 'marijnh/tern_for_vim' "{{{
+  nnoremap <silent> <leader>td :TernDefSplit<cr>
+  nnoremap <silent> <leader>tr :TernRefs<cr>
+  nnoremap <silent> <leader>tc :TernRename<cr>
 "}}}
 
 " Installation check.
