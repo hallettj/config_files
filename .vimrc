@@ -209,8 +209,6 @@ NeoBundle 'kien/ctrlp.vim' "{{{
   let g:ctrlp_working_path_mode=0
   let g:ctrlp_max_files=60000
   let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
-  nnoremap <silent> <leader>t :CtrlP<cr>
-  nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 "}}}
 
 NeoBundle 'tpope/vim-fugitive' "{{{
@@ -300,6 +298,12 @@ NeoBundle 'bling/vim-airline' "{{{
   set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12
   let g:airline_powerline_fonts = 1
   set noshowmode  " Mode is indicated in status line instead.
+"}}}
+
+NeoBundle 'marijnh/tern_for_vim' "{{{
+  nnoremap <silent> <leader>td :TernDefSplit<cr>
+  nnoremap <silent> <leader>tr :TernRefs<cr>
+  nnoremap <silent> <leader>tc :TernRename<cr>
 "}}}
 
 " Installation check.
