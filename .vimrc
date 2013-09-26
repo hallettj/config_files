@@ -262,7 +262,13 @@ NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'IndentAnything'
-NeoBundle 'pangloss/vim-javascript'
+
+NeoBundle 'pangloss/vim-javascript' "{{{
+  if has('conceal')
+    let g:javascript_conceal=1
+    autocmd FileType javascript set conceallevel=2 concealcursor=ni
+  endif
+"}}}
 
 NeoBundle 'maksimr/vim-jsbeautify' "{{{
   nnoremap <leader>fjs :call JsBeautify()<cr>
@@ -288,6 +294,12 @@ NeoBundle 'altercation/vim-colors-solarized' "{{{
   set t_Co=16
   let g:solarized_visibility="low" "Specifies contrast of invisibles.
   colorscheme solarized
+"}}}
+
+NeoBundle 'airblade/vim-gitgutter' "{{{
+  let g:gitgutter_enabled = 0
+  nnoremap <silent> <leader>gg :GitGutterToggle<cr>
+  vnoremap <silent> <leader>gg :GitGutterToggle<cr>
 "}}}
 
 " Installation check.
