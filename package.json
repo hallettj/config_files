@@ -15,6 +15,7 @@
   "bugs": "https://github.com/hallettj/config_files/issues",
   "dependencies": {
     "jsctags": "git://github.com/ramitos/jsctags.git",
-    "jshint":  "~2.1.11"
+    "jshint":  "~2.1.11",
+    "tern":    "~0.4.0"
   }
 }
