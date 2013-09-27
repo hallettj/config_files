@@ -104,6 +104,7 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
+nnoremap <C-\> <C-W>p
 
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
