@@ -274,7 +274,12 @@ NeoBundle 'sotte/presenting.vim'
 NeoBundle 'altercation/vim-colors-solarized' "{{{
   set background=dark
   set t_Co=16
-  let g:solarized_visibility="low" "Specifies contrast of invisibles.
+  if has('gui_running')
+    " I like the lower contrast for list characters.  But in a terminal
+    " this makes them completely invisible and causes the cursor to
+    " disappear.
+    let g:solarized_visibility="low" "Specifies contrast of invisibles.
+  endif
   colorscheme solarized
 "}}}
 
