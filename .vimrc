@@ -59,16 +59,9 @@ if has('gui_running')
   set guioptions+=mTLlRrb
   set guioptions-=mTLlRrb
 
+  " Overridden in airline customization
   set guifont=Ubuntu\ Mono\ 12
 endif
-
-" colorscheme desert
-
-" " Set color for end-of-line characters for desert theme.
-" highlight NonText guibg=grey20 guifg=grey30
-" " Set color for tab characters for desert theme.
-" highlight SpecialKey guibg=grey20 guifg=grey30
-" highlight ColorColumn guibg=grey21 ctermbg=darkgray
 
 " Automatically save when the window loses focus or when a buffer is
 " hidden.
@@ -88,30 +81,7 @@ augroup myfiletypes
 
   au BufRead,BufNewFile *.ftl setfiletype ftl.html
   au BufRead,BufNewFile *.soy setfiletype soy.html
-
-  au BufRead,BufNewFile *.md setfiletype markdown
-  autocmd FileType markdown setlocal comments=n:>
-  autocmd FileType mkd      setlocal comments=n:>
 augroup END
-
-" statusline
-" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-" format markers:
-"   %< truncation point
-"   %n buffer number
-"   %f relative path to file
-"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
-"   %r readonly flag [RO]
-"   %y filetype [ruby]
-"   %= split point for left and right justification
-"   %-35. width specification
-"   %l current line number
-"   %L number of lines in buffer
-"   %c current column number
-"   %V current virtual column number (-n), if different from %c
-"   %P percentage through buffer
-"   %) end of width specification
-set statusline=%<\ %n:%f\ %m%r%y%=%{fugitive#statusline()}\ %-35.(line:\ %l\ of\ %L,\ col:\ %c\ (%P)%)
 
 " Load matchit to bounce between do and end in Ruby and between opening
 " and closing tags in HTML.
@@ -134,8 +104,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
-set splitbelow
-set splitright
 
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
@@ -216,7 +184,8 @@ NeoBundle 'tpope/vim-fugitive' "{{{
   nnoremap <silent> <leader>gd :Gdiff<CR>
   nnoremap <silent> <leader>gc :Gcommit<CR>
   nnoremap <silent> <leader>gb :Gblame<CR>
-  nnoremap <silent> <leader>gl :Glog<CR>
+  nnoremap          <leader>ge :Gedit<space>
+  nnoremap <silent> <leader>gl :silent Glog<CR>:copen<CR>
   nnoremap <silent> <leader>gp :Git push<CR>
   nnoremap <silent> <leader>gw :Gwrite<CR>
   nnoremap <silent> <leader>gr :Gremove<CR>
@@ -236,14 +205,6 @@ NeoBundle 'scrooloose/nerdtree' "{{{
   nnoremap <silent> <leader>f :NERDTreeFind<CR>
 "}}}
 
-NeoBundle 'scrooloose/nerdcommenter' "{{{
-  let NERDSpaceDelims = 1
-  let NERD_ftl_alt_style=1
-  let NERDCustomDelimiters = {
-      \ 'ftl': { 'leftAlt': '<#--', 'rightAlt': '-->' }
-  \ }
-"}}}
-
 NeoBundle 'scrooloose/syntastic' "{{{
   let g:syntastic_error_symbol = '✗'
   let g:syntastic_style_error_symbol = '✠'
@@ -252,15 +213,26 @@ NeoBundle 'scrooloose/syntastic' "{{{
   let g:syntastic_enable_signs=0
   nnoremap <silent> <Leader>e :SyntasticCheck<cr>:silent! Errors<cr>
   vnoremap <silent> <Leader>e :SyntasticCheck<cr>:silent! Errors<cr>
+  nnoremap <silent> <leader>lc :lclose<cr>
+  nnoremap <silent> <leader>lo :lopen<cr>
 "}}}
+
+" unimpaired pairs well with syntastic - provides location list
+" shortcuts
+NeoBundle 'tpope/vim-unimpaired'
 
 NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
   nnoremap <silent> <Leader>] :TagbarToggle<cr>
   vnoremap <silent> <Leader>] :TagbarToggle<cr>
 "}}}
 
-NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-characterize'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-sleuth'
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'IndentAnything'
 
 NeoBundle 'pangloss/vim-javascript' "{{{
@@ -268,6 +240,15 @@ NeoBundle 'pangloss/vim-javascript' "{{{
     let g:javascript_conceal=1
     autocmd FileType javascript set conceallevel=2 concealcursor=n
   endif
+"}}}
+
+NeoBundle 'marijnh/tern_for_vim' "{{{
+  augroup Tern
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader>td :TernDefSplit<cr>
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader>tr :TernRefs<cr>
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader>tc :TernRename<cr>
+  augroup END
 "}}}
 
 NeoBundle 'maksimr/vim-jsbeautify' "{{{
@@ -303,21 +284,13 @@ NeoBundle 'airblade/vim-gitgutter' "{{{
 "}}}
 
 NeoBundle 'mileszs/ack.vim' "{{{
-  nnoremap <silent> <leader>a :Ack<space>
+  nnoremap <leader>a :Ack<space>
 "}}}
 
 NeoBundle 'bling/vim-airline' "{{{
   set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12
   let g:airline_powerline_fonts = 1
   set noshowmode  " Mode is indicated in status line instead.
-"}}}
-
-NeoBundle 'marijnh/tern_for_vim' "{{{
-  nnoremap <silent> <leader>td :TernDefSplit<cr>
-  nnoremap <silent> <leader>tr :TernRefs<cr>
-  nnoremap <silent> <leader>tc :TernRename<cr>
-  nnoremap <silent> <leader>lc :lclose<cr>
-  nnoremap <silent> <leader>lo :lopen<cr>
 "}}}
 
 " Installation check.
