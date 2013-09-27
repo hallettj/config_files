@@ -310,5 +310,9 @@ NeoBundle 'bling/vim-airline' "{{{
   set noshowmode  " Mode is indicated in status line instead.
 "}}}
 
+NeoBundle 'SirVer/ultisnips' "{{{
+  let g:UltiSnipsEditSplit = 'vertical'
+"}}}
+
 " Installation check.
 NeoBundleCheck
