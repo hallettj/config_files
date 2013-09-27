@@ -250,8 +250,8 @@ NeoBundle 'scrooloose/syntastic' "{{{
   let g:syntastic_warning_symbol = '∆'
   let g:syntastic_style_warning_symbol = '≈'
   let g:syntastic_enable_signs=0
-  nnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
-  vnoremap <Leader>e :SyntasticCheck<cr>:Errors<cr>
+  nnoremap <silent> <Leader>e :SyntasticCheck<cr>:silent! Errors<cr>
+  vnoremap <silent> <Leader>e :SyntasticCheck<cr>:silent! Errors<cr>
 "}}}
 
 NeoBundle 'majutsushi/tagbar', { 'depends': 'bitc/lushtags' } "{{{
@@ -266,7 +266,7 @@ NeoBundle 'IndentAnything'
 NeoBundle 'pangloss/vim-javascript' "{{{
   if has('conceal')
     let g:javascript_conceal=1
-    autocmd FileType javascript set conceallevel=2 concealcursor=ni
+    autocmd FileType javascript set conceallevel=2 concealcursor=n
   endif
 "}}}
 
@@ -316,6 +316,8 @@ NeoBundle 'marijnh/tern_for_vim' "{{{
   nnoremap <silent> <leader>td :TernDefSplit<cr>
   nnoremap <silent> <leader>tr :TernRefs<cr>
   nnoremap <silent> <leader>tc :TernRename<cr>
+  nnoremap <silent> <leader>lc :lclose<cr>
+  nnoremap <silent> <leader>lo :lopen<cr>
 "}}}
 
 " Installation check.
