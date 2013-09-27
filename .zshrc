@@ -81,6 +81,8 @@ RPS1='$(custom_vi_mode_prompt_info)'
 alias ack="ack-grep"
 alias beep="aplay --quiet /usr/share/sounds/pop.wav"
 alias t="todo.sh -d ~/Dropbox/todo/todo.cfg"
+# Set correct term for tmux so solarized theme works in vim
+alias tmux="TERM=screen-256color-bce tmux"
 
 # Instructs shell to use todo.sh completions for the command `t`.
 compdef _todo.sh t
