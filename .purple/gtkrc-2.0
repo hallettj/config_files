@@ -1,0 +1,32 @@
+# Zoresvit (c) 2012 <zoresvit@gmail.com>
+# Solarized colorscheme for pidgin. This file seats in
+# ~/.purple/gtkrc-2.0
+
+style "pidgin-solarized" {
+    font_name = "Sans 11"
+    base[NORMAL] = "#002B36"
+    text[NORMAL] = "#839496"
+  # Change the color of hyperlinks.
+  GtkIMHtml::hyperlink-color = "#268BD2"
+  GtkIMHtml::hyperlink-visited-color = "#6C71C4"
+  # Change the color of the nick in highlighted messages, e.g. messages containing your nick
+  GtkIMHtml::highlight-name-color = "#DC322F"
+  # Change the color of the nick in received message
+  GtkIMHtml::receive-name-color = "#859900"
+  # Change the color of the nick in sent message
+  GtkIMHtml::send-name-color = "#2AA198"
+  # Change the color of the nick in action messages, e.g. "/me likes pidgin"
+  GtkIMHtml::action-name-color = "#062585"
+  # Change the font of the typing notification in conversation history.
+  GtkIMHtml::typing-notification-font = "italic light 8.0"
+  # Change the color of the typing notification
+  GtkIMHtml::typing-notification-color = "#CB4B16"
+  # Disable the typing notification
+  GtkIMHtml::typing-notification-enable = 0
+
+  # The following settings will change the behaviour in all GTK+ applications
+  # Change the cursor color
+  GtkWidget::cursor-color    = "#EEE8D5"
+  GtkWidget::secondary-cursor-color = "#FDF6E3" #for mixed ltr and rtl
+}
+widget_class "*" style "pidgin-solarized"
