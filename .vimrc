@@ -194,6 +194,14 @@ NeoBundle 'tpope/vim-fugitive' "{{{
   autocmd BufReadPost fugitive://* set bufhidden=delete
 "}}}
 
+NeoBundle 'mhinz/vim-signify' "{{{
+  let g:signify_disable_by_default = 1
+  let g:signify_mapping_next_hunk = '<leader>gj'
+  let g:signify_mapping_prev_hunk = '<leader>gk'
+  let g:signify_mapping_toggle_highlight = '<leader>gh'
+  let g:signify_mapping_toggle           = '<leader>gt'
+"}}}
+
 NeoBundle 'scrooloose/nerdtree' "{{{
   let NERDTreeShowHidden=1
   let NERDTreeQuitOnOpen=0
