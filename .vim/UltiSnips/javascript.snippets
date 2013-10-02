@@ -20,6 +20,18 @@ else {
 }
 endsnippet
 
+snippet fun "function (fun)" !w
+function(${1}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet fun "function (fun)" !b
+function ${1:name}(${2}) {
+	${VISUAL}$0
+}
+endsnippet
+
 snippet ret "return"
 return
 endsnippet
