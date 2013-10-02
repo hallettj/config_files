@@ -6,7 +6,7 @@
 gtk-icon-theme-name = "GNOME"
 gtk-theme-name = "SolarizedDark"
 
-gtk_color_scheme = "fg_color:#fdf6e3\nbg_color:#002b36\nbase_color:#073642\ntext_color:#fdf6e3\nselected_bg_color:#586e75\nselected_fg_color:#fdf6e3"
+gtk_color_scheme = "fg_color:#839496\nbg_color:#002b36\nbase_color:#073642\ntext_color:#839496\nselected_bg_color:#586e75\nselected_fg_color:#839496"
 
 gtk-button-images = 1
 gtk-icon-sizes = "panel-menu=16,16:panel=16,16:gtk-button=16,16:gtk-large-toolbar=16,16"
@@ -27,12 +27,10 @@ style "theme-default"
   GtkExpander    ::expander_size     = 16
   GtkScale       ::slider-length     = 16
 
-  
-  
   xthickness = 1
   ythickness = 1
 
-  fg[NORMAL]        = @fg_color 
+  fg[NORMAL]        = @fg_color
   fg[PRELIGHT]      = @selected_fg_color
   fg[SELECTED]      = @selected_fg_color
   fg[ACTIVE]        = darker (@fg_color)
@@ -41,7 +39,7 @@ style "theme-default"
   bg[NORMAL]        = @bg_color
   bg[PRELIGHT]      = @selected_bg_color
   bg[SELECTED]	    = @selected_bg_color
-  bg[INSENSITIVE]   = @bg_color 
+  bg[INSENSITIVE]   = @bg_color
   bg[ACTIVE]        = @bg_color
 
   base[NORMAL]     	=  @base_color
@@ -56,7 +54,7 @@ style "theme-default"
   text[SELECTED]   	=  darker (@selected_fg_color)
   text[INSENSITIVE]	=  @fg_color
 
-  engine "murrine" 
+  engine "murrine"
   {
 	menuitemstyle	 	= 2
 	scrollbar_color	 	= "#cb4b16"
@@ -100,8 +98,8 @@ style "theme-button" = "theme-wider"
   #bg[INSENSITIVE] = @bg_color
   #bg[PRELIGHT]   	= @bg_color
   #bg[ACTIVE]		= @bg_color
-  	text[PRELIGHT]  = @selected_fg_color 
- 
+  	text[PRELIGHT]  = @selected_fg_color
+
 }
 
 
@@ -128,12 +126,12 @@ style "theme-menu" = "theme-default"
 style "theme-menu-item" = "theme-default"
 {
   ythickness = 3
-  	fg[NORMAL]		= @fg_color 
+  	fg[NORMAL]		= @fg_color
   	fg[PRELIGHT] 		= @selected_fg_color
   	fg[INSENSITIVE]	= @selected_fg_color
   	bg[SELECTED]	    = @selected_bg_color
 }
-  
+
 
 style "theme-menubar" = "theme-default"
 {
@@ -198,7 +196,7 @@ class "GtkWindow"	style "metacity-frame"
 style "inactivetext2"
 {
 	engine "mist"
- 	{
+	{
 		#
 	}
 }
@@ -207,24 +205,24 @@ widget_class "*.<GtkMenuItem>.*" style "inactivetext2"
 
 style "panel"
 {
-  	xthickness   = 2
-  	ythickness   = 2
+	xthickness   = 2
+	ythickness   = 2
 	bg[NORMAL]   = @bg_color
-	fg[NORMAL]   = @fg_color 
-	text[NORMAL] = @fg_color 
+	fg[NORMAL]   = @fg_color
+	text[NORMAL] = @fg_color
 }
 
 style "panelbuttons"
 {
-  	xthickness      = 0
-  	ythickness      = 0
+    xthickness		= 0
+    ythickness		= 0
     bg[NORMAL] 		= @bg_color
-    bg[ACTIVE]		= @bg_color 
-    bg[SELECTED]	= @selected_bg_color 
+    bg[ACTIVE]		= @bg_color
+    bg[SELECTED]	= @selected_bg_color
     bg[PRELIGHT]	= @bg_color
-    
+
     fg[NORMAL]		= @fg_color
-    fg[ACTIVE]		= @selected_fg_color 
+    fg[ACTIVE]		= @selected_fg_color
     fg[PRELIGHT]	= @selected_fg_color
 }
 
