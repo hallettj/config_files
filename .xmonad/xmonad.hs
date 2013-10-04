@@ -423,6 +423,8 @@ myLogHook h = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP 
 -- By default, do nothing.
 myStartupHook = do
   setWMName "LG3D" -- Improves compatibility with Java applications.
+  spawn "xmodmap ~/.xmodmap"
+  spawn "xcape -d -t 150 -e 'Control_L=Escape'"
   spawn "tray"
   spawn "start-btsync"
 
