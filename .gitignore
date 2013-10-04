@@ -6,3 +6,4 @@
 .vim/.netrwhist
 !.grunt-init/*
 !.grunt-init/**/*
+.vim/.cache
