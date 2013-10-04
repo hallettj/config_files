@@ -1,3 +1,7 @@
+snippet strict "strict mode declaration" b
+'use strict';
+endsnippet
+
 snippet log "console.log()"
 console.log(${1:'${2:something happened}'$3});
 endsnippet
@@ -32,10 +36,6 @@ function ${1:name}(${2}) {
 }
 endsnippet
 
-snippet ret "return"
-return
-endsnippet
-
 snippet def "define() an AMD module" !b
 define('${1:`!p
 abspath = os.path.abspath(path)
@@ -44,6 +44,7 @@ snip.rv = matches[0] if len(matches) > 0 else 'apps/feature/main'
 `}'${2:, [
 	${3:'jquery'}
 ]}, function(${4:$}) {
+	'use strict';
 	${VISUAL}$0
 });
 endsnippet

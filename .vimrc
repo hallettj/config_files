@@ -244,6 +244,9 @@ NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'IndentAnything'
 
+NeoBundle 'Valloric/YouCompleteMe' "{{{
+"}}}
+
 NeoBundle 'pangloss/vim-javascript' "{{{
   if has('conceal')
     let g:javascript_conceal=1
@@ -384,6 +387,31 @@ NeoBundle 'bling/vim-airline' "{{{
 
 NeoBundle 'SirVer/ultisnips' "{{{
   let g:UltiSnipsEditSplit = 'vertical'
+  "let g:UltiSnipsExpandTrigger = '<C-j>'
+
+  " Allows the same trigger to operate UltiSnips and YouCompleteMe
+  function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+      if pumvisible()
+        return "\<C-n>"
+      else
+        call UltiSnips_JumpForwards()
+        if g:ulti_jump_forwards_res == 0
+          return "\<TAB>"
+        endif
+      endif
+    endif
+    return ""
+  endfunction
+
+  au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+  "let g:UltiSnipsJumpForwardTrigger="<tab>"
+  let g:UltiSnipsListSnippets="<c-e>"
+"}}}
+
+NeoBundle 'jiangmiao/auto-pairs' "{{{
+  let g:AutoPairsFlyMode = 1
 "}}}
 
 " Installation check.
