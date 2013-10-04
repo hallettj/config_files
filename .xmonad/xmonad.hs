@@ -83,17 +83,20 @@ myScratchPads = [ NS "pandora"      spawnPandora     findPandora     (rightPanel
                 , NS "pidgin"       spawnPidgin      findPidgin      (rightPanel 0.25)
                 ]
   where
-    spawnPandora = "/opt/google/chrome/chrome '--app=http://www.pandora.com/'"
+    spawnPandora = chromeApp "http://www.pandora.com/"
     findPandora = resource =? "www.pandora.com"
 
-    spawnRdio = "/opt/google/chrome/chrome '--app=http://www.rdio.com/'"
+    spawnRdio = chromeApp "http://www.rdio.com/"
     findRdio = resource =? "www.rdio.com"
 
-    spawnGoogleMusic = "/opt/google/chrome/chrome '--app=https://play.google.com/music'"
+    spawnGoogleMusic = chromeApp "https://play.google.com/music"
     findGoogleMusic = className =? "play.google.com__music"
 
     spawnPidgin = "pidgin"
     findPidgin  = role =? "buddy_list"
+
+    chromeApp = (("google-chrome --user-data-dir=" ++ dataDir ++ " --app=") ++)
+    dataDir   = "$HOME/.config/google-chrome-apps"
 
     rightPanel w = customFloating $ W.RationalRect l t w h
       where
