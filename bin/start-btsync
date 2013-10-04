@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BTSYNC=$(command -v btsync)
+CONF=$HOME/sync.conf
+
+if [ -n $BTSYNC -a -f $CONF ] ; then
+  $BTSYNC --config $CONF
+fi

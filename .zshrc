@@ -88,7 +88,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 compdef _todo.sh t
 
 # I have so many things in ~/bin 
-export PATH=/home/jesse/.cabal/bin:/home/jesse/bin:~/Dropbox/todo:$PATH
+export PATH=/home/jesse/.cabal/bin:/home/jesse/.xmonad/bin:/home/jesse/bin:~/Dropbox/todo:$PATH
 # That's right
 export EDITOR=vim
 # And again
