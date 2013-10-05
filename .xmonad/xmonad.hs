@@ -9,6 +9,7 @@ import System.IO
 import System.Exit
 import XMonad
 import XMonad.Actions.CycleWS (nextScreen, swapNextScreen, toggleWS')
+import XMonad.Actions.Volume (lowerVolume, raiseVolume, toggleMute)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -23,6 +24,7 @@ import XMonad.Layout.ResizableTile (MirrorResize(MirrorExpand, MirrorShrink), Re
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.Util.Dzen (addArgs, center, dzenConfig, font, onCurr)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig (mkKeymap)
 import XMonad.Util.NamedScratchpad ( NamedScratchpad(NS)
@@ -33,7 +35,7 @@ import XMonad.Util.NamedScratchpad ( NamedScratchpad(NS)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Data.Monoid (All (All))
-import Control.Monad (when)
+import Control.Monad ((>=>), when)
 
 
 ------------------------------------------------------------------------
@@ -251,15 +253,15 @@ vicfryzelKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Mute volume.
   , ((0, 0x1008ff12),
-     spawn "amixer -q set Master toggle")
+     toggleMute >> return ())
 
   -- Decrease volume.
   , ((0, 0x1008ff11),
-     spawn "amixer -q set Master 3%-")
+     lowerVolume 3 >>= alertNum)
 
   -- Increase volume.
   , ((0, 0x1008ff13),
-     spawn "amixer -q set Master 3%+")
+     raiseVolume 3 >>= alertNum)
 
   -- Audio previous.
   , ((0, 0x1008FF16),
@@ -496,3 +498,15 @@ main = do
     logHook            = myLogHook xmproc,
     startupHook        = myStartupHook
   }
+
+
+------------------------------------------------------------------------
+-- Helpers
+--
+alertNum :: (RealFrac a) => a -> X ()
+alertNum = dzenConfig centered . show . round
+centered =
+        onCurr (center 150 66)
+    >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
+    >=> addArgs ["-fg", base02]
+    >=> addArgs ["-bg", base1]
