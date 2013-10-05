@@ -9,7 +9,6 @@ import System.IO
 import System.Exit
 import XMonad
 import XMonad.Actions.CycleWS (nextScreen, swapNextScreen, toggleWS')
-import XMonad.Actions.Volume (lowerVolume, raiseVolume, toggleMute)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -25,7 +24,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Dzen (addArgs, center, dzenConfig, font, onCurr)
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run (runProcessWithInput, spawnPipe)
 import XMonad.Util.EZConfig (mkKeymap)
 import XMonad.Util.NamedScratchpad ( NamedScratchpad(NS)
                                    , customFloating
@@ -35,6 +34,7 @@ import XMonad.Util.NamedScratchpad ( NamedScratchpad(NS)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Data.Monoid (All (All))
+import Control.Applicative ((<$>))
 import Control.Monad ((>=>), when)
 
 
@@ -257,11 +257,11 @@ vicfryzelKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Decrease volume.
   , ((0, 0x1008ff11),
-     lowerVolume 3 >>= alertNum)
+     volume "3%-" >>= alert)
 
   -- Increase volume.
   , ((0, 0x1008ff13),
-     raiseVolume 3 >>= alertNum)
+     volume "3%+" >>= alert)
 
   -- Audio previous.
   , ((0, 0x1008FF16),
@@ -503,8 +503,14 @@ main = do
 ------------------------------------------------------------------------
 -- Helpers
 --
-alertNum :: (RealFrac a) => a -> X ()
-alertNum = dzenConfig centered . show . round
+volume :: (MonadIO m, Functor m) => String -> m Int
+volume change = read <$> runProcessWithInput "volume" [change] ""
+
+toggleMute :: (MonadIO m) => m ()
+toggleMute = spawn "amixer -D pulse sset Master toggle"
+
+alert :: (Show a) => a -> X ()
+alert = dzenConfig centered . show
 centered =
         onCurr (center 150 66)
     >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
