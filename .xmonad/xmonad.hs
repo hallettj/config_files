@@ -10,13 +10,14 @@ import System.Exit
 import XMonad
 import XMonad.Actions.CycleWS (nextScreen, swapNextScreen, toggleWS')
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.MarkAsUrgent (markAsUrgent)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook (NoUrgencyHook(..), clearUrgents, focusUrgent, withUrgencyHook)
 import XMonad.Layout.Flip (Flip(..))
-import XMonad.Layout.Fullscreen
+import XMonad.Layout.Fullscreen hiding (fullscreenEventHook)
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace (onWorkspaces)
 import XMonad.Layout.ResizableTile (MirrorResize(MirrorExpand, MirrorShrink), ResizableTall(..))
@@ -33,7 +34,7 @@ import XMonad.Util.NamedScratchpad ( NamedScratchpad(NS)
                                    , namedScratchpadManageHook )
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-import Data.Monoid (All (All))
+import Data.Monoid (All (All), mappend)
 import Control.Applicative ((<$>))
 import Control.Monad ((>=>), when)
 
@@ -425,7 +426,6 @@ myLogHook h = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP 
 -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
 -- per-workspace layout choices.
 --
--- By default, do nothing.
 myStartupHook = do
   setWMName "LG3D" -- Improves compatibility with Java applications.
   spawn "xmodmap ~/.xmodmap"
@@ -436,41 +436,8 @@ myStartupHook = do
 
 ------------------------------------------------------------------------
 -- Event Hooks:
-
--- Helper functions to fullscreen the window
-fullFloat, tileWin :: Window -> X ()
-fullFloat w = windows $ W.float w r
-    where r = W.RationalRect 0 0 1 1
-tileWin w = windows $ W.sink w
-
-fullscreenEventHook :: Event -> X All
-fullscreenEventHook (ClientMessageEvent _ _ _ dpy win typ dat) = do
-    state <- getAtom "_NET_WM_STATE"
-    fullsc <- getAtom "_NET_WM_STATE_FULLSCREEN"
-    isFull <- runQuery isFullscreen win
-
-    -- Constants for the _NET_WM_STATE protocol
-    let remove = 0
-        add = 1
-        toggle = 2
-
-        -- The ATOM property type for changeProperty
-        ptype = 4
-
-        action = head dat
-
-    when (typ == state && (fromIntegral fullsc) `elem` tail dat) $ do
-        when (action == add || (action == toggle && not isFull)) $ do
-            io $ changeProperty32 dpy win state ptype propModeReplace [fromIntegral fullsc]
-            fullFloat win
-        when (head dat == remove || (action == toggle && isFull)) $ do
-            io $ changeProperty32 dpy win state ptype propModeReplace []
-            tileWin win
-
-    -- It shouldn't be necessary for xmonad to do anything more with this event
-    return $ All False
-
-fullscreenEventHook _ = return $ All True
+--
+myHandleEventHook = handleEventHook defaultConfig `mappend` fullscreenEventHook
 
 
 ------------------------------------------------------------------------
@@ -495,6 +462,7 @@ main = do
     -- hooks, layouts
     layoutHook         = smartBorders $ myLayout,
     manageHook         = myManageHook,
+    handleEventHook    = myHandleEventHook,
     logHook            = myLogHook xmproc,
     startupHook        = myStartupHook
   }
