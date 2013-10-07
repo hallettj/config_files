@@ -23,5 +23,5 @@ Config {
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% }{ %multicpu%   %memory%   %swap%   %eth0%   <fc=#93a1a1>%date%</fc>   %KPAO%"
+    template = "%StdinReader% }{ %memory%   %swap%   <fc=#93a1a1>%date%</fc>   %KPAO%"
 }
