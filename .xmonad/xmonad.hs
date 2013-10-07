@@ -415,6 +415,7 @@ myLogHook h = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP 
     ppOutput  = hPutStrLn h
   , ppTitle   = xmobarColor xmobarTitleColor "" . shorten 100
   , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+  , ppVisible = shorten 100  -- no special formatting
   , ppSep     = "   "
   , ppUrgent  = xmobarColor xmobarUrgentFG xmobarUrgentBG
 }
