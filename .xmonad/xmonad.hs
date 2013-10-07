@@ -258,11 +258,11 @@ vicfryzelKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Decrease volume.
   , ((0, 0x1008ff11),
-     volume "3%-" >>= alert)
+     volume "1%-" >>= alert)
 
   -- Increase volume.
   , ((0, 0x1008ff13),
-     volume "3%+" >>= alert)
+     volume "1%+" >>= alert)
 
   -- Audio previous.
   , ((0, 0x1008FF16),
