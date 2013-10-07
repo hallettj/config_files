@@ -29,6 +29,12 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
+" Fixes H and L movements for use with scrolloff
+execute 'nnoremap H H'.&l:scrolloff.'k'
+execute 'vnoremap H H'.&l:scrolloff.'k'
+execute 'nnoremap L L'.&l:scrolloff.'j'
+execute 'vnoremap L L'.&l:scrolloff.'j'
+
 " Make searches case-sensitive only when capital letters are included.
 set ignorecase
 set smartcase
@@ -66,19 +72,11 @@ endif
 " Automatically save when the window loses focus or when a buffer is
 " hidden.
 set autowriteall
-au FocusLost * wall
+au FocusLost * silent! wall
 
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
-
-  " When working with certain programming languages I want to indent
-  " with 2 spaces instead of 4.
-  autocmd FileType cabal,coffee,ruby,python,eruby,haml,yaml,lua,io,scala setlocal sw=2 sts=2
-
-  " Use hard tabs with these file types.
-  autocmd FileType snippet,gitconfig setlocal noexpandtab
-
   au BufRead,BufNewFile *.ftl setfiletype ftl.html
   au BufRead,BufNewFile *.soy setfiletype soy.html
 augroup END
@@ -106,6 +104,16 @@ nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 nnoremap <C-\> <C-W>p
 
+" Swaps ' and `
+nnoremap ' `
+vnoremap ' `
+nnoremap ` '
+vnoremap ` '
+
+" Retains selection in visual mode when indenting blocks
+vnoremap < <gv
+vnoremap > >gv
+
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
 endfunction
@@ -122,6 +130,9 @@ endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+" Write file as root
+cnoremap w!! w !sudo tee % >/dev/null
 
 
 " Let NeoBundle manage NeoBundle
