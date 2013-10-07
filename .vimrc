@@ -256,6 +256,8 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'IndentAnything'
 
 NeoBundle 'Valloric/YouCompleteMe' "{{{
+  let g:ycm_autoclose_preview_window_after_completion = 1
+  let g:ycm_autoclose_preview_window_after_insertion = 1
 "}}}
 
 NeoBundle 'pangloss/vim-javascript' "{{{
