@@ -97,13 +97,6 @@ set nofoldenable
 nnoremap <tab> %
 vnoremap <tab> %
 
-" window manipulation
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-nnoremap <C-H> <C-W>h
-nnoremap <C-\> <C-W>p
-
 " Swaps ' and `
 nnoremap ' `
 vnoremap ' `
@@ -113,27 +106,6 @@ vnoremap ` '
 " Retains selection in visual mode when indenting blocks
 vnoremap < <gv
 vnoremap > >gv
-
-function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endfunction
-
-function! DoWindowSwap()
-    let curNum = winnr()            "Mark destination
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    let markedBuf = bufnr( "%" )    "Switch to source and shuffle dest->source
-    exe 'hide buf' curBuf
-    exe curNum . "wincmd w"
-    exe 'hide buf' markedBuf
-endfunction
-
-nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
-nmap <silent> <leader>pw :call DoWindowSwap()<CR>
-
-" Write file as root
-cnoremap w!! w !sudo tee % >/dev/null
-
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim', { 'rev': 'master' }
@@ -423,8 +395,32 @@ NeoBundle 'SirVer/ultisnips' "{{{
   let g:UltiSnipsListSnippets="<c-e>"
 "}}}
 
-NeoBundle 'jiangmiao/auto-pairs' "{{{
-  let g:AutoPairsFlyMode = 1
+NeoBundle 'Raimondi/delimitMate' "{{{
+  let delimitMate_expand_cr          = 1
+  let delimitMate_expand_space       = 1
+  let delimitMate_balance_matchpairs = 1
+  let delimitMate_jump_expansion     = 1
+"}}}
+
+NeoBundle 'spolu/dwm.vim' "{{{
+  let g:dwm_map_keys = 0
+  let g:dwm_master_pane_width = "50%"
+
+  " Cycle windows clockwise and counterclockwise.
+  nnoremap <C-J> <C-W>w
+  nnoremap <C-K> <C-W>W
+
+  " Shortcut to switch to window to the left or to the right.
+  nnoremap <C-H> <C-W>h
+  nnoremap <C-L> <C-W>l
+
+  " Jumps to last active window.  Press repeatedly to jump back and
+  " forth between two windows.
+  nnoremap <C-\> <C-W>p
+
+  nmap <C-Space> <Plug>DWMFocus
+  nmap <C-N>     <Plug>DWMNew
+  nmap <C-C>     <Plug>DWMClose
 "}}}
 
 " Installation check.
