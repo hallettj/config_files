@@ -242,7 +242,8 @@ NeoBundle 'pangloss/vim-javascript' "{{{
 NeoBundle 'marijnh/tern_for_vim' "{{{
   augroup Tern
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <silent> <leader>td :TernDefSplit<cr>
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader>td :TernDef<cr>
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader>tD :TernDefSplit<cr>
     autocmd FileType javascript nnoremap <buffer> <silent> <leader>tr :TernRefs<cr>
     autocmd FileType javascript nnoremap <buffer> <silent> <leader>tc :TernRename<cr>
   augroup END
