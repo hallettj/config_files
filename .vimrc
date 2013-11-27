@@ -289,7 +289,7 @@ NeoBundle 'drmikehenry/vim-fontdetect'
 
 NeoBundle 'bling/vim-airline' "{{{
   if fontdetect#hasFontFamily('Ubuntu Mono derivative Powerline')
-    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12,Ubuntu\ Mono\ 12,DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     let g:airline_powerline_fonts = 1
   else
     let g:airline_powerline_fonts = 0
